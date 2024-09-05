@@ -43,8 +43,8 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-teal-400 to-indigo-600">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-orange-500 to-indigo-600">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border-4 border-black">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4 relative">
@@ -103,13 +103,13 @@ export default function SignUp() {
             {errors.confirmPassword && <small className="text-red-500">{errors.confirmPassword}</small>}
           </div>
 
-          <Button type="submit" className="w-full bg-gradient-to-r from-teal-400 to-indigo-600 text-white rounded-full py-2">
+          <Button type="submit" className="w-full py-3 text-lg bg-gradient-to-br from-teal-400 to-indigo-600 border border-black rounded-full text-black font-semibold transition-transform transform hover:scale-105 hover:shadow-lg">
             Sign Up
           </Button>
 
           <p className="text-center mt-4">
             Already a member? 
-            <Link href={"/login"} className="text-teal-500">Login</Link>
+            <Link href={"/login"} className="font-bold text-black hover:text-pink-500">Login</Link>
           </p>
         </form>
       </div>

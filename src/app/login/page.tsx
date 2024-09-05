@@ -2,6 +2,7 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from "next/link"
 import { FaUser, FaLock } from 'react-icons/fa';
 import axios from "axios"
 export default function Login() {
@@ -30,8 +31,8 @@ if(res.status==200)
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-cyan-300 to-indigo-600">
-      <div className="bg-green-500 p-10 border border-black rounded-lg shadow-lg backdrop-blur-lg max-w-md w-full">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-orange-500 to-indigo-600">
+      <div className="bg-white p-10 border-4 border-black rounded-lg shadow-lg backdrop-blur-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center text-black mb-8">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="relative mb-6">
@@ -42,7 +43,7 @@ if(res.status==200)
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full py-3 pl-10 pr-3 border border-black rounded-full bg-white bg-opacity-50 text-black shadow-inner"
+              className="w-full py-3 pl-10 pr-3 border-2 border-black rounded-full bg-white bg-opacity-50 text-black shadow-inner"
             />
             <span className="absolute top-1/2 left-3 transform -translate-y-1/2 text-black text-lg">
               <FaUser />
@@ -56,20 +57,18 @@ if(res.status==200)
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full py-3 pl-10 pr-3 border border-black rounded-full bg-white bg-opacity-50 text-black shadow-inner"
+              className="w-full py-3 pl-10 pr-3 border-2 border-black rounded-full bg-white bg-opacity-50 text-black shadow-inner"
             />
             <span className="absolute top-1/2 left-3 transform -translate-y-1/2 text-black text-lg">
               <FaLock />
             </span>
           </div>
-          <button type="submit" className="w-full py-3 bg-gradient-to-br from-cyan-400 to-pink-500 border border-black rounded-full text-black font-semibold transition-transform transform hover:scale-105 hover:shadow-lg">
+          <button type="submit" className="w-full py-3 bg-gradient-to-br from-teal-400 to-indigo-600 border border-black rounded-full text-black font-semibold transition-transform transform hover:scale-105 hover:shadow-lg">
             Login
           </button>
           <p className="text-center mt-4">
             Not yet a member?{' '}
-            <a href="#" className="font-bold text-black hover:text-pink-500">
-              Sign up
-            </a>
+            <Link href={"/signup"} className="font-bold text-black hover:text-pink-500">Sign Up</Link>
           </p>
         </form>
       </div>
