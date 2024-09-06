@@ -1,6 +1,7 @@
-// components/Dashboard.js
-"use client"
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   BarChart,
   Bar,
@@ -14,9 +15,15 @@ import {
   Pie,
   Cell,
 } from "recharts";
- // Assuming you are using ShadCN's `cn` utility
 
 const Dashboard = () => {
+  const router = useRouter();
+
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    email: ''
+  });
+
   const emissionsData = [
     { name: "Jan", emissions: 200 },
     { name: "Feb", emissions: 250 },
@@ -53,6 +60,35 @@ const Dashboard = () => {
     "#FF9F40",
   ];
 
+  // Initialize state with values from localStorage
+  useEffect(() => {
+    const storedName = localStorage.getItem('username') || '';
+    const storedEmail = localStorage.getItem('email') || '';
+    setUserInfo({
+      name: storedName,
+      email: storedEmail
+    });
+  }, []);
+
+  const handleButtonClick = (page: any) => {
+    switch (page) {
+      case "footprint":
+        router.push('./footprint');
+        break;
+      case "carbonsink":
+        router.push('./carbonsink');
+        break;
+      case "neutrality":
+        router.push('./neutrality');
+        break;
+      case "report":
+        router.push('./report'); // Assuming you have a report page
+        break;
+      default:
+        console.error("Unknown page");
+    }
+  };
+
   return (
     <div className="container flex min-h-screen">
       <aside className="sidebar w-64 bg-gray-800 text-white flex flex-col">
@@ -65,16 +101,16 @@ const Dashboard = () => {
               <a href="#">Dashboard</a>
             </li>
             <li className="hover:bg-green-600 p-3 rounded-md">
-              <a href="#">Carbon Footprint</a>
+              <button onClick={() => handleButtonClick('footprint')}>Carbon Footprint</button>
             </li>
             <li className="hover:bg-green-600 p-3 rounded-md">
-              <a href="#">Sink Analysis</a>
+              <button onClick={() => handleButtonClick('carbonsink')}>Sink Analysis</button>
             </li>
             <li className="hover:bg-green-600 p-3 rounded-md">
-              <a href="#">Carbon Neutrality</a>
+              <button onClick={() => handleButtonClick('neutrality')}>Neutrality</button>
             </li>
             <li className="hover:bg-green-600 p-3 rounded-md">
-              <a href="#">Report</a>
+              <button onClick={() => handleButtonClick('report')}>Report</button>
             </li>
           </ul>
         </nav>
@@ -82,27 +118,17 @@ const Dashboard = () => {
 
       <main className="main-content flex-grow p-6">
         <header className="header mb-6">
-          <div className="user-details flex justify-between items-center text-white">
+          <div className="user-details flex flex-col text-white">
             <div className="user-info text-lg space-y-2">
               <div>
-                <strong>Name:</strong>{" "}
-                <input
-                  type="text"
-                  placeholder="Enter Your Name"
-                  className="p-2 rounded-md w-64"
-                />
+                <strong className="text-black">Name:</strong>{" "}
+                <span className="text-black">{userInfo.name}</span>
               </div>
               <div>
-                <strong>Email:</strong>{" "}
-                <input
-                  type="text"
-                  placeholder="Enter Your GMail"
-                  className="p-2 rounded-md w-64"
-                />
+                <strong className="text-black">Email:</strong>{" "}
+                <span className="text-black">{userInfo.email}</span>
               </div>
-              <div>
-                Organization
-              </div>
+              <div>Organization</div>
             </div>
           </div>
         </header>
