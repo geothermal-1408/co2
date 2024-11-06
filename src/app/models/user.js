@@ -6,6 +6,6 @@ const userSchema = new mongoose.Schema({
   email: { type: String , required: true}
 });
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const User = mongoose.models.Co2User || mongoose.model('Co2User', userSchema);
 
 export default User;
