@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { NextResponse } from 'next/server';import connectDb from '@/app/utils/dbConnect';
+import { NextResponse } from 'next/server';
+import dbConnect from '@/app/utils/dbConnect';
 import User from '@/app/models/user';
 
 export async function POST(req) {
-  await connectDb();
+  await dbConnect();
   const { username, password } = await req.json();
 
   const user = await User.findOne({ username });
@@ -18,8 +19,8 @@ export async function POST(req) {
   }
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-  const response = NextResponse.json({ message: 'Login successful' });
-  response.cookies.set('token', token, { httpOnly: true, path: '/' });
+  const response = NextResponse.json({ message: 'Login successful', token});
+   response.cookies.set('token', token, { httpOnly: true, path: '/' });
   
   return response;
 }
