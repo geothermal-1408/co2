@@ -67,7 +67,7 @@ export default function SignUp() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
- 
+
   // Handle form submission and store in local storage
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -96,7 +96,7 @@ export default function SignUp() {
         Already a member?
         <Link
           href={"/login"}
-          className="font-bold text-black hover:text-blue-500"
+          className="font-bold text-red-600 hover:text-blue-500"
         >
           Login
         </Link>

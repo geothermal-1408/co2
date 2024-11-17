@@ -10,40 +10,48 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import DashboardLayout from "@/components/Sidebar";
+import { ModeToggle } from "@/components/Toggle-mode";
+
+import * as React from "react";
 
 export default function Component() {
   return (
     <DashboardLayout>
       <div className="flex flex-col min-h-screen">
-        <header className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
+        <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 shadow-sm">
           <div className="flex items-center space-x-2">
-            <BarChart className="h-6 w-6 text-green-600" />
-            <span className="text-xl font-bold">CarbonTrack India</span>
+            <BarChart className="h-6 w-6 text-green-600 dark:text-green-400" />
+            <span className="text-xl font-bold text-gray-900 dark:text-white">
+              CarbonTrack India
+            </span>
           </div>
           <nav className="flex items-center space-x-4">
+            <ModeToggle />
             <Link
-              className="text-sm font-medium transition-colors hover:text-green-600"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
               href="#"
             >
               About
             </Link>
             <Link
-              className="text-sm font-medium transition-colors hover:text-green-600"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
               href="#"
             >
               Initiatives
             </Link>
             <Link
-              className="text-sm font-medium transition-colors hover:text-green-600"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
               href="#"
             >
               Contact
             </Link>
-            <Button variant="outline">Get Started</Button>
+            <Button variant="outline" className="text-sm">
+              Get Started
+            </Button>
           </nav>
         </header>
 
-        <main className="flex-grow px-6 py-8 bg-gray-50">
+        <main className="flex-grow px-6 py-8 bg-gray-50 dark:bg-gray-800">
           {/* Hero Section */}
           <section
             className="relative bg-cover bg-center py-24 text-white"
@@ -58,7 +66,8 @@ export default function Component() {
                 Carbon Footprint & Neutrality in Indian Coal Mines
               </h1>
               <p className="text-xl text-gray-200">
-                Understanding and mitigating the environmental impact of coal mining in India
+                Understanding and mitigating the environmental impact of coal
+                mining in India
               </p>
               <Button size="lg" className="mt-4">
                 Learn More
@@ -78,7 +87,9 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Coal mines in India contribute significantly to the country's carbon footprint, releasing methane, a potent greenhouse gas.
+                    Coal mines in India contribute significantly to the
+                    country’s carbon footprint, releasing methane, a potent
+                    greenhouse gas.
                   </p>
                 </CardContent>
               </Card>
@@ -92,7 +103,9 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Achieving carbon neutrality involves clean technologies, energy efficiency, and investing in carbon offset projects like reforestation.
+                    Achieving carbon neutrality involves clean technologies,
+                    energy efficiency, and investing in carbon offset projects
+                    like reforestation.
                   </p>
                 </CardContent>
               </Card>
@@ -106,7 +119,8 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Strategies include methane capture, energy-efficient equipment, optimized transportation, and land reclamation.
+                    Strategies include methane capture, energy-efficient
+                    equipment, optimized transportation, and land reclamation.
                   </p>
                 </CardContent>
               </Card>
@@ -115,29 +129,35 @@ export default function Component() {
 
           {/* Visualization Section */}
           <section className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center">
+            <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
               Carbon Footprint Visualizations
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="hover:scale-105 transition-transform">
                 <CardContent className="flex justify-center">
-                  <PieChart className="h-64 w-64 text-green-600" />
+                  <PieChart className="h-64 w-64 text-green-600 dark:text-green-400" />
                 </CardContent>
-                <div className="text-center font-semibold mt-4">Emissions by Region</div>
+                <div className="text-center font-semibold mt-4">
+                  Emissions by Region
+                </div>
               </Card>
 
               <Card className="hover:scale-105 transition-transform">
                 <CardContent className="flex justify-center">
-                  <LineChart className="h-64 w-full text-blue-600" />
+                  <LineChart className="h-64 w-full text-blue-600 dark:text-blue-400" />
                 </CardContent>
-                <div className="text-center font-semibold mt-4">Annual Emissions Trend</div>
+                <div className="text-center font-semibold mt-4">
+                  Annual Emissions Trend
+                </div>
               </Card>
 
               <Card className="hover:scale-105 transition-transform">
                 <CardContent className="flex justify-center">
-                  <BarChart className="h-64 w-full text-purple-600" />
+                  <BarChart className="h-64 w-full text-purple-600 dark:text-purple-400" />
                 </CardContent>
-                <div className="text-center font-semibold mt-4">Emission Sources</div>
+                <div className="text-center font-semibold mt-4">
+                  Emission Sources
+                </div>
               </Card>
             </div>
           </section>

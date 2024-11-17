@@ -89,7 +89,7 @@ export default function Login() {
           Not yet a member?
           <Link
             href={"/signup"}
-            className="font-bold text-black hover:text-blue-500"
+            className="font-bold text-red-600 hover:text-blue-500"
           >
             Sign Up
           </Link>

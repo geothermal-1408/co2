@@ -1,5 +1,6 @@
 "use client"
 
+import { ModeToggle } from "@/components/Toggle-mode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, LineChart, PieChart, Leaf, Factory, Truck } from "lucide-react";
@@ -53,7 +54,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p>
-                  Coal mines in India contribute significantly to the country's carbon footprint. They release methane, a
+                  Coal mines in India contribute significantly to the countrys carbon footprint. They release methane, a
                   potent greenhouse gas, and the coal extraction and transportation processes emit substantial CO2.
                 </p>
               </CardContent>
