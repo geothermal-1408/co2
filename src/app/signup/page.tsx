@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/ace_input";
 import { Label } from "@/components/ui/ace_label";
 import { useState } from "react";
 import Link from "next/link";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -69,20 +67,47 @@ export default function SignUp() {
   };
 
   // Handle form submission and store in local storage
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     if (validateInputs()) {
-      // Store username and password in localStorage
-      localStorage.setItem("firstname", formData.firstname);
-      localStorage.setItem("lastname", formData.lastname);
-      localStorage.setItem("password", formData.password);
-      localStorage.setItem("email", formData.email);
+      const username = `${formData.firstname.trim()} ${formData.lastname.trim()}`;
+      const payload = {
+        username,
+        email: formData.email,
+        password: formData.password,
+      };
 
-      // Navigate to dashboard
-      router.replace("/login");
+      try {
+        const response = await fetch("api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          const { authtoken } = data;
+          localStorage.setItem("authtoken", authtoken);
+
+          // Navigate to dashboard
+          router.replace("/dashboard");
+        } else {
+          // Handle API errors
+          alert(`Signup failed: ${data.message}`);
+        }
+      } catch (e) {
+        alert("An error occurred. Please try again later.");
+      }
 
       alert("Signup successful");
+    } else {
+      alert("please fill out all details properly");
     }
   };
 

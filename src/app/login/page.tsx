@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/ace_input";
 import { Label } from "@/components/ui/ace_label";
 import { useState } from "react";
 import Link from "next/link";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -57,29 +55,49 @@ export default function Login() {
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
-    // Get stored username and password from local storage
-    const storedFirstName = localStorage.getItem("firstname");
-    const storedLastName = localStorage.getItem("lastname");
-    const storedPassword = localStorage.getItem("password");
+    if (validateInputs()) {
+      const username = formData.firstname + formData.lastname;
+      const payload = {
+        username,
+        password: formData.password,
+      };
 
-    // Compare the stored credentials with the submitted ones
-    if (
-      validateInputs() &&
-      formData.firstname === storedFirstName &&
-      formData.lastname === storedLastName &&
-      formData.password === storedPassword
-    ) {
-      // Redirect to the dashboard on successful login
-      router.replace("/dashboard");
-      alert("Login Successful");
+      try {
+        const response = await fetch("api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          const { authtoken } = data;
+          localStorage.setItem("authtoken", authtoken);
+
+          // Navigate to dashboard
+          router.replace("/dashboard");
+        } else {
+          // Handle API errors
+          alert(`Signup failed: ${data.message}`);
+        }
+      } catch (e) {
+        alert("An error occurred. Please try again later.");
+      }
+    }else{
+      
     }
   };
 
   return (
-    <div className="container flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="relative max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
         <h2 className="font-bold text-xl text-center text-neutral-800 dark:text-neutral-200">
           Welcome Again to CarbonTrack India
