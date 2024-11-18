@@ -2,6 +2,10 @@ import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
 import dbConnect from '@/app/utils/dbConnect';
 import User from '@/app/models/user';
+import jwt from "jsonwebtoken";
+
+const secret = process.env.JWT_SECRET
+
 
 export async function POST(req) {
   try {
@@ -17,7 +21,7 @@ export async function POST(req) {
       return NextResponse.json({ message: 'everything is required' }, { status: 400 });
     }
 
-    const userExists = await User.findOne({ username });
+    const userExists = await User.findOne({ username, email });
     if (userExists) {
       return NextResponse.json({ message: 'User already exists' }, { status: 400 });
     }
@@ -29,7 +33,17 @@ export async function POST(req) {
     const newUser = new User({ username, password: hashedPassword, email });
     await newUser.save();
 
-    return NextResponse.json({ message: 'User created' }, { status: 201 });
+    const data = {
+      user: {
+        id: newUser._id.toString(), // Convert to string to ensure consistency
+        username: newUser.username,
+        email: newUser.email
+      }
+    };
+    
+    const authtoken = jwt.sign(data, secret)
+
+    return NextResponse.json({ message: 'User created',authtoken }, { status: 201 });
   } catch (error) {
     console.error("Error creating user:", error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });

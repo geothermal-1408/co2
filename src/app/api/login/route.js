@@ -7,6 +7,8 @@ import User from '@/app/models/user';
 export async function POST(req) {
   await dbConnect();
   const { username, password } = await req.json();
+  console.log(username);
+  
 
   const user = await User.findOne({ username });
   if (!user) {
@@ -19,8 +21,8 @@ export async function POST(req) {
   }
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-  const response = NextResponse.json({ message: 'Login successful', token});
-   response.cookies.set('token', token, { httpOnly: true, path: '/' });
-  
+  const response = NextResponse.json({ message: 'Login successful', token });
+  response.cookies.set('token', token, { httpOnly: true, path: '/' });
+
   return response;
 }
