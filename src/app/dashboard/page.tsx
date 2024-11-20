@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import DashboardLayout from "@/components/Sidebar";
+
 import {
   BarChart,
   Bar,
@@ -17,12 +18,6 @@ import {
 } from "recharts";
 
 const Dashboard = () => {
-  
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-  });
-
   const emissionsData = [
     { name: "Jan", emissions: 200 },
     { name: "Feb", emissions: 250 },
@@ -59,48 +54,27 @@ const Dashboard = () => {
     "#FF9F40",
   ];
 
-  // Initialize state with values from localStorage
-  useEffect(() => {
-    const storedName = localStorage.getItem("username") || "";
-    const storedEmail = localStorage.getItem("email") || "";
-    setUserInfo({
-      name: storedName,
-      email: storedEmail,
-    });
-  }, []);
-
   return (
     <DashboardLayout>
       <div className="container flex min-h-screen">
-        
         <main className="main-content flex-grow p-6">
-          <header className="header mb-6">
-            <div className="user-details flex flex-col text-white">
-              <div className="user-info text-lg space-y-2">
-                <div>
-                  <strong className="text-black">Name:</strong>{" "}
-                  <span className="text-black">{userInfo.name}</span>
-                </div>
-                <div>
-                  <strong className="text-black">Email:</strong>{" "}
-                  <span className="text-black">{userInfo.email}</span>
-                </div>
-                <div>Organization</div>
-              </div>
-            </div>
-          </header>
-
+          {/* Dashboard Section */}
           <section className="dashboard mb-8 text-center">
-            <h1 className="text-4xl text-white mb-6">DASHBOARD</h1>
-            <div className="dashboard-cards flex gap-6">
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+            <h1 className="text-3xl text-black dark:text-white mb-6">
+              DASHBOARD
+            </h1>
+
+            {/* Responsive Grid for Dashboard Cards */}
+            <div className="dashboard-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Card 1: Total Emissions */}
+              <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center">
                 <h2 className="text-2xl mb-4">Total Emissions</h2>
                 <p className="text-xl mb-6">12,345 tCO2e</p>
                 <BarChart
-                  width={400}
-                  height={300}
+                  width={300}
+                  height={250}
                   data={emissionsData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -110,14 +84,15 @@ const Dashboard = () => {
                 </BarChart>
               </div>
 
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+              {/* Card 2: Energy Consumption */}
+              <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center">
                 <h2 className="text-2xl mb-4">Energy Consumption</h2>
                 <p className="text-xl mb-6">45,678 MWh</p>
                 <LineChart
-                  width={400}
-                  height={300}
+                  width={300}
+                  height={250}
                   data={energyData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -132,17 +107,18 @@ const Dashboard = () => {
                 </LineChart>
               </div>
 
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+              {/* Card 3: Carbon Intensity */}
+              <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center">
                 <h2 className="text-2xl mb-4">Carbon Intensity</h2>
                 <p className="text-xl mb-6">0.85 tCO2e/t</p>
-                <PieChart width={400} height={300}>
+                <PieChart width={300} height={250}>
                   <Pie
                     data={intensityData}
                     dataKey="value"
                     nameKey="name"
                     cx="50%"
                     cy="50%"
-                    outerRadius={100}
+                    outerRadius={80}
                     fill="#8884d8"
                   >
                     {intensityData.map((entry, index) => (
@@ -158,24 +134,32 @@ const Dashboard = () => {
             </div>
           </section>
 
+          {/* Carbon Neutrality Section */}
           <section className="carbon-neutrality mt-8">
             <h2 className="text-3xl mb-6">Carbon Neutrality</h2>
-            <div className="strategy-cards flex gap-6 flex-wrap">
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+
+            {/* Responsive Grid for Strategy Cards */}
+            <div className="strategy-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Strategy Card 1 */}
+              <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col">
                 <h3 className="text-xl mb-4">Renewable Energy Integration</h3>
                 <p>
                   Explore opportunities to increase the share of renewable
                   energy in the mine's energy mix, such as solar and wind.
                 </p>
               </div>
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+
+              {/* Strategy Card 2 */}
+              <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col">
                 <h3 className="text-xl mb-4">Energy Efficiency Measures</h3>
                 <p>
                   Implement energy-efficient technologies and optimize processes
                   to reduce overall energy consumption.
                 </p>
               </div>
-              <div className="card p-6 bg-white rounded-lg shadow-md flex-1">
+
+              {/* Strategy Card 3 */}
+              <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col">
                 <h3 className="text-xl mb-4">Carbon Capture and Storage</h3>
                 <p>
                   Explore the feasibility of carbon capture and storage
