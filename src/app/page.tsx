@@ -1,5 +1,6 @@
-"use client"
+"use client";
 
+import { Button1 } from "@/components/ui/moving-border";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -17,10 +18,9 @@ import { ModeToggle } from "@/components/Toggle-mode";
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export default function Component() {
-
   const router = useRouter();
 
   const handleGetStartedClick = () => {
@@ -90,9 +90,13 @@ export default function Component() {
             >
               Contact
             </Link>
-            <Button variant="outline" className="text-sm" onClick={handleGetStartedClick}>
+            <Button1
+              variant="outline"
+              className="text-sm bg-white dark:bg-slate-900 text-black dark:text-white hover:scale-105 transition-transform"
+              onClick={handleGetStartedClick}
+            >
               Get Started
-            </Button>
+            </Button1>
           </nav>
         </header>
 
@@ -109,10 +113,10 @@ export default function Component() {
               <h1 className="text-4xl font-bold text-black-800 dark:text-white">
                 Carbon Footprint & Neutrality in Indian Coal Mines
               </h1>
-              <div className="text-m text-black-800 dark:text-white">
-                <TypewriterEffect words={words}/>
+              <div className="text-m text-black-800 dark:text-white flex flex-col items-center justify-center">
+                <TypewriterEffectSmooth words={words} />
               </div>
-              <Button size="lg" className="mt-4">
+              <Button size="lg" className="mt-4 hover:scale-105 transition-transform">
                 Learn More
               </Button>
             </div>
