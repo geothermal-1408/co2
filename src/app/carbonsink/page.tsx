@@ -1,13 +1,14 @@
 // pages/index.js
+"use client"
+
 import { MapPin, LineChart } from "lucide-react";
 import DashboardLayout from "@/components/Sidebar";
 import MapComponent from "@/components/Map";
 //import dynamic from "next/dynamic";
 
- export default function Home() 
+ export default function Carbonsink() 
 {
   return (
-    <DashboardLayout>
       <div className="min-h-screen bg-gray-100 flex flex-col">
         <div className="container mx-auto p-4 flex flex-col lg:flex-row gap-6">
           {/* Left Section */}
@@ -60,6 +61,5 @@ import MapComponent from "@/components/Map";
           </div>
         </div>
       </div>
-    </DashboardLayout>
   );
 }
