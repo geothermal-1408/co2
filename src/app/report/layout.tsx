@@ -1,4 +1,3 @@
-// components/DashboardLayout.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -6,6 +5,8 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import CarbonReport from "./page";
+
 import {
   IconDashboard,
   IconLeaf,
@@ -14,7 +15,8 @@ import {
   IconFileReport,
 } from "@tabler/icons-react";
 
-export function sideBar() {
+
+export function dashboardlayout() {
   const links = [
     {
       label: "Dashboard",
@@ -80,6 +82,7 @@ export function sideBar() {
           </div>
         </SidebarBody>
       </Sidebar>
+      <CarbonReport/>
     </div>
   );
 }
@@ -104,4 +107,4 @@ export const LogoIcon = () => (
   </Link>
 );
 
-export default sideBar;
+export default dashboardlayout

@@ -26,31 +26,31 @@ import {
   IconFileReport,
 } from "@tabler/icons-react";
 
-export function SidebarDemo() {
+export function sideBar() {
   const links = [
     {
       label: "Dashboard",
-      href: "#",
+      href: "/dashboard",
       icon: <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
     },
     {
       label: "Carbon Footprint",
-      href: "#",
+      href: "/footprint",
       icon: <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
     },
     {
       label: "Sink Analysis",
-      href: "#",
+      href: "/carbonsink",
       icon: <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
     },
     {
       label: "Neutrality",
-      href: "#",
+      href: "/neutrality",
       icon: <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
     },
     {
       label: "Report",
-      href: "#",
+      href: "/report",
       icon: <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
     },
   ];
@@ -77,7 +77,7 @@ export function SidebarDemo() {
             <SidebarLink
               link={{
                 label: "John Doe",
-                href: "#",
+                href: "/profile",
                 icon: (
                   <Image
                     src=""
@@ -99,7 +99,7 @@ export function SidebarDemo() {
 
 // Logo Components
 export const Logo = () => (
-  <Link href="#" className="font-normal flex space-x-5 items-center text-m text-black py-1">
+  <Link href="/dashboard" className="font-normal flex space-x-5 items-center text-m text-black py-1 ">
     <div className="h-7 w-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
     <motion.span
       initial={{ opacity: 0 }}
@@ -112,7 +112,7 @@ export const Logo = () => (
 );
 
 export const LogoIcon = () => (
-  <Link href="#" className="font-normal flex space-x-2 items-center text-sm text-black py-1">
+  <Link href="/profile" className="font-normal flex space-x-2 items-center text-sm text-black py-1">
     <div className="h-5 w-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
   </Link>
 );
@@ -153,7 +153,6 @@ export const Dashboard = () => {
     "#9966FF",
     "#FF9F40",
   ];
-  const [open, setOpen] = useState(false);
   return (
       <div className="container flex min-h-screen">
         <main className="main-content flex-grow p-6">
@@ -272,4 +271,4 @@ export const Dashboard = () => {
   );
 };
 
-export default SidebarDemo;
+export default sideBar;

@@ -12,7 +12,6 @@ import {
   Truck,
 } from "lucide-react";
 import Link from "next/link";
-import DashboardLayout from "@/components/Sidebar";
 import { ModeToggle } from "@/components/Toggle-mode";
 
 import * as React from "react";
@@ -61,7 +60,6 @@ export default function Component() {
   ];
 
   return (
-    <DashboardLayout>
       <div className="flex flex-col min-h-screen">
         <header className="flex items-center justify-between px-6 py-4 rounded-xl bg-neutral-200 dark:bg-gray-900 shadow-sm">
           <div className="flex items-center space-x-2">
@@ -214,6 +212,5 @@ export default function Component() {
           <p>&copy; 2024 CarbonTrack India. All rights reserved.</p>
         </footer>
       </div>
-    </DashboardLayout>
   );
 }

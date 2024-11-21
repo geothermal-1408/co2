@@ -1,10 +1,8 @@
 // pages/index.js
 import { ArrowRight, LineChart, BarChart2 } from "lucide-react";
-import DashboardLayout from "@/components/Sidebar";
 
-export default function Home() {
+export default function Neutrality() {
   return (
-    <DashboardLayout>
       <div className="bg-white text-black font-sans min-h-screen">
         <div className="container mx-auto p-6">
           {/* Emissions Section */}
@@ -94,6 +92,5 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </DashboardLayout>
   );
 }
