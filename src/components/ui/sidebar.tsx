@@ -11,6 +11,7 @@ interface Links {
   icon: React.JSX.Element | React.ReactNode;
 }
 
+
 interface SidebarContextProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -85,6 +86,19 @@ export const DesktopSidebar = ({
   ...props
 }: React.ComponentProps<typeof motion.div>) => {
   const { open, setOpen, animate } = useSidebar();
+  React.useEffect(() => {
+    // Disable scrolling on body when the sidebar is open
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
   return (
     <>
       <motion.div
@@ -95,11 +109,15 @@ export const DesktopSidebar = ({
           className
         )}
         animate={{
-          width: animate ? (open ? "220px" : "60px") : "220px",
+          width: animate ? (open ? "220px" : "80px") : "220px",
         }}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         {...props}
+        style={{
+          overflowY: "auto", // Enable scrolling within the sidebar
+          maxHeight: "100vh", // Ensure it doesn't exceed the viewport height
+        }}
       >
         {children}
       </motion.div>
@@ -113,6 +131,19 @@ export const MobileSidebar = ({
   ...props
 }: React.ComponentProps<"div">) => {
   const { open, setOpen } = useSidebar();
+  React.useEffect(() => {
+    // Disable scrolling on body when the sidebar is open
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
   return (
     <>
       <div
@@ -141,6 +172,10 @@ export const MobileSidebar = ({
                 "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
                 className
               )}
+              style={{
+                overflow: "auto", // Allow scrolling inside the sidebar
+                maxHeight: "100vh", // Ensure the sidebar height doesn't exceed the viewport
+            }}
             >
               <div
                 className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
