@@ -26,7 +26,7 @@ import {
   IconFileReport,
 } from "@tabler/icons-react";
 
-export function sideBar() {
+export function SideBar() {
   const links = [
     {
       label: "Dashboard",
@@ -154,7 +154,7 @@ export const Dashboard = () => {
     "#FF9F40",
   ];
   return (
-      <div className="container flex min-h-screen">
+      <div className="container flex min-h-screen overflow-y-auto">
         <main className="main-content flex-grow p-6">
           {/* Dashboard Section */}
           <section className="dashboard mb-8 text-center">
@@ -271,4 +271,4 @@ export const Dashboard = () => {
   );
 };
 
-export default sideBar;
+export default SideBar;
