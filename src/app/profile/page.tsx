@@ -1,13 +1,22 @@
 // pages/profile.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button"; // Adjust the import based on your Shadcn setup
-import { IconTrash, IconLogout, IconUserFilled, IconHistory } from "@tabler/icons-react"; // Import required icons
+import {
+  IconTrash,
+  IconLogout,
+  IconUserFilled,
+  IconHistory,
+  IconSun,
+  IconMoon,
+} from "@tabler/icons-react";
 
 const ProfilePage: React.FC = () => {
   const username = "John Doe"; // Replace with your username
   const email = "johndoe@example.com"; // Replace with your email
+
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleDeleteProfile = () => {
     alert("Profile deleted!"); // Logic to delete the profile
@@ -21,10 +30,24 @@ const ProfilePage: React.FC = () => {
     alert("Viewing history..."); // Logic for viewing history
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-blue-500 to-indigo-700 p-8">
+    <div
+      className={`min-h-screen flex flex-col items-center justify-center p-8 ${
+        darkMode ? "bg-slate-900" : "bg-gradient-to-br from-blue-900 to-indigo-950"
+      }`}
+    >
+      {/* Header */}
+      <header className="w-full max-w-md flex items-center justify-center mb-6">
+        <h1 className="text-2xl font-bold text-white">Profile Page</h1>
+      </header>
+
       {/* Profile Card */}
-      <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6">
+      <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 flex flex-col justify-between">
         {/* Avatar and User Details */}
         <div className="flex items-center">
           <div className="flex items-center justify-center w-24 h-24 bg-gray-300 rounded-full mr-4 shadow-md">
@@ -65,20 +88,22 @@ const ProfilePage: React.FC = () => {
             Delete Profile
           </Button>
         </div>
-      </div>
 
-      {/* Additional Information */}
-      <div className="mt-8 w-full max-w-md text-center">
-        <h2 className="text-xl font-medium text-white">
-          Welcome back, {username}!
-        </h2>
-        <p className="text-gray-200 mt-2">
-          Here you can manage your profile, view your history, or logout.
-        </p>
+        {/* Dark Mode Toggle */}
+        <div className="mt-6 flex justify-center">
+          <Button
+            variant="default"
+            onClick={toggleDarkMode}
+            className="flex items-center justify-center bg-gray-500 hover:bg-gray-600 text-white dark:bg-gray-700 dark:hover:bg-gray-800"
+          >
+            {darkMode ? <IconSun className="w-5 h-5 mr-2" /> : <IconMoon className="w-5 h-5 mr-2" />}
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </Button>
+        </div>
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 text-gray-300 text-sm">
+      <footer className="mt-8 text-gray-300 text-sm">
         © {new Date().getFullYear()} Your App Name. All rights reserved.
       </footer>
     </div>
