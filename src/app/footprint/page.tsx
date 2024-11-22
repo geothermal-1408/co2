@@ -100,9 +100,9 @@ export const Logo = () => (
     <motion.span
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="font-semibold text-2xl text-black dark:text-white whitespace-pre"
+      className="font-semibold text-lg text-black dark:text-white whitespace-pre"
     >
-      CarbonTrack India
+      CarbonTrack
     </motion.span>
   </Link>
 );
@@ -172,7 +172,7 @@ export function CarbonFootprintAnalysis() {
   };
 
   return (
-    <div className="min-h-screen  flex flex-col bg-gradient-to-b from-green-200 to-white">
+    <div className="min-h-screen  flex flex-col overflow-y-auto bg-gradient-to-b from-green-200 to-white">
       <div className="container mx-auto p-6 flex flex-col lg:flex-row gap-8">
         <div className="flex-1 space-y-8">
           {/* Heading Section */}
