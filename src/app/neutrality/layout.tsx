@@ -16,7 +16,7 @@ import {
 } from "@tabler/icons-react";
 import Neutrality from "./page";
 
-export function dashboardlayout() {
+export function Dashboardlayout() {
   const links = [
     {
       label: "Dashboard",
@@ -94,9 +94,9 @@ export const Logo = () => (
     <motion.span
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="font-semibold text-2xl text-black dark:text-white whitespace-pre"
+      className="font-semibold text-lg text-black dark:text-white whitespace-pre"
     >
-      CarbonTrack India
+      CarbonTrack
     </motion.span>
   </Link>
 );
@@ -107,4 +107,4 @@ export const LogoIcon = () => (
   </Link>
 );
 
-export default dashboardlayout
+export default Dashboardlayout
