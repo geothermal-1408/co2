@@ -23,7 +23,7 @@ const ProfilePage: React.FC = () => {
   };
 
   const handleLogout = () => {
-    alert("Logged out!"); // Logic to logout
+    localStorage.getItem("authtoken");
   };
 
   const handleViewHistory = () => {
@@ -35,23 +35,27 @@ const ProfilePage: React.FC = () => {
     document.documentElement.classList.toggle("dark");
   };
 
+  const initial = username.charAt(0).toUpperCase();
+
   return (
     <div
       className={`min-h-screen flex flex-col items-center justify-center p-8 ${
-        darkMode ? "bg-slate-900" : "bg-gradient-to-br from-blue-900 to-indigo-950"
+        darkMode
+          ? "bg-slate-900"
+          : "bg-gradient-to-br from-blue-900 to-indigo-950"
       }`}
     >
       {/* Header */}
       <header className="w-full max-w-md flex items-center justify-center mb-6">
-        <h1 className="text-2xl font-bold text-white">Profile Page</h1>
+        <h1 className="text-3xl font-bold text-white">Profile Page</h1>
       </header>
 
       {/* Profile Card */}
       <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 flex flex-col justify-between">
         {/* Avatar and User Details */}
         <div className="flex items-center">
-          <div className="flex items-center justify-center w-24 h-24 bg-gray-300 rounded-full mr-4 shadow-md">
-            <IconUserFilled className="w-16 h-16 text-gray-600" /> {/* Avatar icon */}
+          <div className="flex items-center justify-center w-24 h-24 bg-blue-500 text-white font-bold text-6xl rounded-full mr-4 shadow-md">
+            {initial} {/* Avatar icon */}
           </div>
           <div className="flex flex-col">
             <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">
@@ -96,7 +100,11 @@ const ProfilePage: React.FC = () => {
             onClick={toggleDarkMode}
             className="flex items-center justify-center bg-gray-500 hover:bg-gray-600 text-white dark:bg-gray-700 dark:hover:bg-gray-800"
           >
-            {darkMode ? <IconSun className="w-5 h-5 mr-2" /> : <IconMoon className="w-5 h-5 mr-2" />}
+            {darkMode ? (
+              <IconSun className="w-5 h-5 mr-2" />
+            ) : (
+              <IconMoon className="w-5 h-5 mr-2" />
+            )}
             {darkMode ? "Light Mode" : "Dark Mode"}
           </Button>
         </div>
