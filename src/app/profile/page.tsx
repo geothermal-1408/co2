@@ -23,7 +23,7 @@ const ProfilePage: React.FC = () => {
   };
 
   const handleLogout = () => {
-    alert("Logged out!"); // Logic to logout
+    localStorage.getItem("authtoken");
   };
 
   const handleViewHistory = () => {
@@ -34,6 +34,7 @@ const ProfilePage: React.FC = () => {
     setDarkMode((prev) => !prev);
     document.documentElement.classList.toggle("dark");
   };
+
   const initial = username.charAt(0).toUpperCase();
 
   return (
@@ -46,7 +47,7 @@ const ProfilePage: React.FC = () => {
     >
       {/* Header */}
       <header className="w-full max-w-md flex items-center justify-center mb-6">
-        <h1 className="text-4xl font-bold text-white">Profile Page</h1>
+        <h1 className="text-3xl font-bold text-white">Profile Page</h1>
       </header>
 
       {/* Profile Card */}
@@ -54,7 +55,7 @@ const ProfilePage: React.FC = () => {
         {/* Avatar and User Details */}
         <div className="flex items-center">
           <div className="flex items-center justify-center w-24 h-24 bg-blue-500 text-white font-bold text-6xl rounded-full mr-4 shadow-md">
-            {initial} {/* Display the first letter of the username */}
+            {initial} {/* Avatar icon */}
           </div>
           <div className="flex flex-col">
             <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">

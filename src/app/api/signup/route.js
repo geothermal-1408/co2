@@ -4,46 +4,53 @@ import dbConnect from '@/app/utils/dbConnect';
 import User from '@/app/models/user';
 import jwt from "jsonwebtoken";
 
-const secret = process.env.JWT_SECRET
-
+const secret = process.env.JWT_SECRET;
 
 export async function POST(req) {
   try {
     await dbConnect();
 
-    // Check if the request is in JSON format
+    // Parse JSON body
     const body = await req.json();
     const { username, password, email } = body;
-    //console.log('test');
 
-    // Validate that username and password are provided
+    // Validate input
     if (!username || !password || !email) {
       return NextResponse.json({ message: 'everything is required' }, { status: 400 });
     }
 
+    // Check if user already exists
     const userExists = await User.findOne({ username, email });
     if (userExists) {
       return NextResponse.json({ message: 'User already exists' }, { status: 400 });
     }
 
-    // Hash the password
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create and save the new user
     const newUser = new User({ username, password: hashedPassword, email });
     await newUser.save();
 
+    // Create JWT
     const data = {
       user: {
-        id: newUser._id.toString(), // Convert to string to ensure consistency
-        username: newUser.username,
-        email: newUser.email
-      }
+        id: newUser._id.toString()
+      },
     };
-    
-    const authtoken = jwt.sign(data, secret)
+    const authtoken = jwt.sign(data, secret, { expiresIn: '1d' });
 
-    return NextResponse.json({ message: 'User created',authtoken }, { status: 201 });
+    // Create response
+    const response = NextResponse.json({ message: 'User created' }, { status: 201 });
+
+    // Set cookie
+    response.cookies.set('token', authtoken, {
+      httpOnly: true, // Prevent JavaScript access to cookies
+      maxAge: 24 * 60 * 60, // Token expiration: 1 day
+      path: '/', // Available across the entire application
+    });
+
+    return response;
   } catch (error) {
     console.error("Error creating user:", error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
