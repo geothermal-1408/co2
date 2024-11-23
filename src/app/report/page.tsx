@@ -1,12 +1,18 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Textarea } from '@/components/ui/textarea'
-import { Separator } from '@/components/ui/separator'
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
 
 // Mock function to simulate AI analysis
 const analyzeInputs = (inputs: string[]): string[] => {
@@ -16,46 +22,51 @@ const analyzeInputs = (inputs: string[]): string[] => {
     "Implement a comprehensive recycling program to reduce waste.",
     "Explore options for sustainable transportation, such as electric vehicles or public transit.",
     "Invest in energy-efficient appliances and lighting throughout your operations.",
-    "Develop a sustainable supply chain by partnering with eco-friendly suppliers."
-  ]
-}
+    "Develop a sustainable supply chain by partnering with eco-friendly suppliers.",
+  ];
+};
 
 export default function CarbonReport() {
-  const [inputs, setInputs] = useState(['', '', ''])
-  const [suggestions, setSuggestions] = useState<string[]>([])
+  const [inputs, setInputs] = useState(["", "", ""]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   const handleInputChange = (index: number, value: string) => {
-    const newInputs = [...inputs]
-    newInputs[index] = value
-    setInputs(newInputs)
-  }
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+    setInputs(newInputs);
+  };
 
   const handleAnalyze = () => {
-    const aiSuggestions = analyzeInputs(inputs)
-    setSuggestions(aiSuggestions)
-  }
+    const aiSuggestions = analyzeInputs(inputs);
+    setSuggestions(aiSuggestions);
+  };
 
   return (
     <div className="container mx-auto py-10 overflow-y-auto">
-      <h1 className="text-4xl font-bold mb-8">Carbon Neutrality Pathway Analysis</h1>
-     
-      <div className="grid gap-6 mb-8 md:grid-cols-3">
-        {inputs.map((input, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <CardTitle>Input Box {index + 1}</CardTitle>
-              <CardDescription>Enter relevant information about your carbon footprint</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                placeholder="Enter your information here..."
-                value={input}
-                onChange={(e:any) => handleInputChange(index, e.target.value)}
-                className="min-h-[150px]"
-              />
-            </CardContent>
-          </Card>
-        ))}
+      <h1 className="text-4xl font-bold mb-8 flex items-center justify-center">
+        Carbon Neutrality Pathway Analysis
+      </h1>
+      <div className="report-cards grid grid-cols-5 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {inputs.map((input, index) => (
+            <Card key={index}>
+              <CardHeader>
+                <CardTitle>Input Box {index + 1}</CardTitle>
+                <CardDescription>
+                  Enter relevant information about your carbon footprint
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Textarea
+                  placeholder="Enter your information here..."
+                  value={input}
+                  onChange={(e: any) =>
+                    handleInputChange(index, e.target.value)
+                  }
+                  className="min-h-[150px]"
+                />
+              </CardContent>
+            </Card>
+          ))}
       </div>
 
       <Button onClick={handleAnalyze} className="mb-8">
@@ -64,7 +75,9 @@ export default function CarbonReport() {
 
       <Separator className="my-8" />
 
-      <h2 className="text-2xl font-semibold mb-4">AI-Generated Pathways to Carbon Neutrality</h2>
+      <h2 className="text-2xl font-semibold mb-4 flex items-center justify-center">
+        AI-Generated Pathways to Carbon Neutrality
+      </h2>
       {suggestions.length > 0 ? (
         suggestions.map((suggestion, index) => (
           <Card key={index} className="mb-4">
@@ -82,11 +95,13 @@ export default function CarbonReport() {
       ) : (
         <Card>
           <CardContent className="text-center py-8">
-            <p>No suggestions generated yet. Please enter your information and click the analyze button.</p>
+            <p>
+              No suggestions generated yet. Please enter your information and
+              click the analyze button.
+            </p>
           </CardContent>
         </Card>
       )}
     </div>
-  )
+  );
 }
-
