@@ -65,7 +65,7 @@ export default function Component() {
           <div className="flex items-center space-x-2">
             <BarChart className="h-6 w-6 text-green-600 dark:text-green-400" />
             <span className="text-xl font-bold text-gray-900 dark:text-white">
-              CarbonTrack India
+              CarbonTrack
             </span>
           </div>
           <nav className="flex items-center space-x-4">

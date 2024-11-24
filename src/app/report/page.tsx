@@ -58,9 +58,13 @@ export default function CarbonReport() {
       style={{ marginLeft: "5px" }}
     >
       {/* Sidebar spacing */}
-      <h1 className="text-4xl font-bold mb-8 flex items-center justify-center">
-        Carbon Neutrality Pathway Analysis
-      </h1>
+      <div className="flex justify-center">
+        <div className="bg-gradient-to-r from-blue-500 to-green-500 text-black py-3 px-6 rounded-md shadow-md">
+          <h1 className="text-4xl font-bold ">
+            Carbon Neutrality Pathway Analysis
+          </h1>
+        </div>
+      </div>
 
       <div className="report-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {inputs.map((input, index) => (
@@ -146,7 +150,7 @@ export default function CarbonReport() {
       ) : (
         <Card
           className="relative bg-green-100 dark:bg-slate-700"
-          style={{ marginLeft: "10px", marginRight: "10px",marginTop: "50px" }}
+          style={{ marginLeft: "10px", marginRight: "10px", marginTop: "50px" }}
         >
           <CardContent className="text-center py-8">
             <p>
