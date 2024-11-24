@@ -53,7 +53,10 @@ export default function CarbonReport() {
   };
 
   return (
-    <div className="container mx-auto py-10 overflow-y-auto" style={{ marginLeft: "5px" }}>
+    <div
+      className="container mx-auto py-10 overflow-y-auto"
+      style={{ marginLeft: "5px" }}
+    >
       {/* Sidebar spacing */}
       <h1 className="text-4xl font-bold mb-8 flex items-center justify-center">
         Carbon Neutrality Pathway Analysis
@@ -61,7 +64,7 @@ export default function CarbonReport() {
 
       <div className="report-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {inputs.map((input, index) => (
-          <Card key={index} className="relative">
+          <Card key={index} className="relative bg-green-100 dark:bg-slate-700">
             <CardHeader>
               <CardTitle>Input Box {index + 1}</CardTitle>
               <CardDescription>
@@ -91,7 +94,7 @@ export default function CarbonReport() {
         <Button
           onClick={handleAddInput}
           variant="outline"
-          className="flex items-center justify-center"
+          className="flex items-center justify-center m-auto"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Input Box
@@ -123,7 +126,7 @@ export default function CarbonReport() {
       {suggestions.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
           {suggestions.map((suggestion, index) => (
-            <Card key={index} className="mb-4">
+            <Card key={index} className="mb-4 bg-green-100 dark:bg-slate-700">
               <CardHeader>
                 <CardTitle>Suggestion {index + 1}</CardTitle>
               </CardHeader>
@@ -132,8 +135,6 @@ export default function CarbonReport() {
                 <Button
                   className="mt-4"
                   variant="outline"
-                  
-                 
                   rel="noopener noreferrer"
                 >
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
@@ -143,11 +144,14 @@ export default function CarbonReport() {
           ))}
         </div>
       ) : (
-        <Card>
+        <Card
+          className="relative bg-green-100 dark:bg-slate-700"
+          style={{ marginLeft: "10px", marginRight: "10px",marginTop: "50px" }}
+        >
           <CardContent className="text-center py-8">
             <p>
               No suggestions generated yet. Please provide information and click
-              the "Analyze" button.
+              the &quot;Analyze&quot; button.
             </p>
           </CardContent>
         </Card>
