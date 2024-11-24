@@ -51,7 +51,7 @@ const Carbonsink: React.FC = () => {
             <select
               value={selectedState}
               onChange={handleStateChange}
-              className="w-full p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              className="w-full p-3 rounded-lg bg-white dark:bg-white text-gray-900 dark:text-black"
             >
               <option value="" disabled>-- Select a State --</option>
               {Object.keys(states).map((state, index) => (
@@ -69,7 +69,7 @@ const Carbonsink: React.FC = () => {
             <select
               value={selectedState}
               onChange={handleStateChange}
-              className="w-full p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              className="w-full p-3 rounded-lg bg-white dark:bg-white text-gray-900 dark:text-black"
             >
               <option value="" disabled>-- Select a State --</option>
               {Object.keys(states).map((state, index) => (
@@ -135,7 +135,7 @@ const Carbonsink: React.FC = () => {
               <LineChart className="w-16 h-16 text-gray-300" />
             </div>
             <div className="absolute bottom-4 left-4">
-              <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-green-600">
                 View Detailed Trends
               </button>
             </div>
