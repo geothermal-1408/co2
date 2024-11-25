@@ -65,13 +65,11 @@ export default function CarbonReport() {
   };
 
   return (
-    <div
-      className="container mx-auto py-10 overflow-y-auto"
-      style={{ marginLeft: "5px" }}
-    >
+    <div className="py-10 overflow-y-auto overflow-x-hidden">
+
       {/* Sidebar spacing */}
         <header className="flex justify-between items-center mb-8 ">
-          <h1 className="bg-gradient-to-r from-blue-500 to-green-500 text-3xl font-extrabold text-center tracking-wide flex-1">
+          <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
             Carbon Report 📊
           </h1>
           <button
@@ -87,7 +85,8 @@ export default function CarbonReport() {
           </button>
         </header>
 
-      <div className="report-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div className="report-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full">
+
         {inputs.map((input, index) => (
           <Card key={index} className="relative bg-green-100 dark:bg-slate-700">
             <CardHeader>
