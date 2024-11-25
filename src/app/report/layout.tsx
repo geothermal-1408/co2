@@ -5,7 +5,6 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import CarbonReport from "./page";
 
 import {
   IconDashboard,
@@ -14,42 +13,53 @@ import {
   IconScale,
   IconFileReport,
 } from "@tabler/icons-react";
-
+import CarbonReport from "./page";
 
 export function Dashboardlayout() {
   const links = [
     {
       label: "Dashboard",
       href: "/dashboard",
-      icon: <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Carbon Footprint",
       href: "/footprint",
-      icon: <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Sink Analysis",
       href: "/carbonsink",
-      icon: <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Neutrality",
       href: "/neutrality",
-      icon: <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Report",
       href: "/report",
-      icon: <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
   ];
   const [open, setOpen] = useState(false);
+
   return (
-    <div className="rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
+    <div className="p-6 h-screen flex flex-row bg-gray-100 dark:bg-gray-900">
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-col flex-1 overflow-y-auto">
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-5">
               {links.map((link, idx) => (
@@ -82,14 +92,20 @@ export function Dashboardlayout() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <CarbonReport/>
+      {/* Content Area */}
+      <div className="flex-1 overflow-auto">
+        <CarbonReport />
+      </div>
     </div>
   );
 }
 
 // Logo Components
 export const Logo = () => (
-  <Link href="/dashboard" className="font-normal flex space-x-5 items-center text-m text-black py-1 ">
+  <Link
+    href="/dashboard"
+    className="font-normal flex space-x-5 items-center text-m text-black py-1 "
+  >
     <div className="h-7 w-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
     <motion.span
       initial={{ opacity: 0 }}
@@ -102,9 +118,12 @@ export const Logo = () => (
 );
 
 export const LogoIcon = () => (
-  <Link href="/profile" className="font-normal flex space-x-2 items-center text-sm text-black py-1">
+  <Link
+    href="/profile"
+    className="font-normal flex space-x-2 items-center text-sm text-black py-1"
+  >
     <div className="h-5 w-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
   </Link>
 );
 
-export default Dashboardlayout
+export default Dashboardlayout;
