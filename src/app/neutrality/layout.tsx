@@ -5,7 +5,6 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Carbonsink from "./page";
 
 import {
   IconDashboard,
@@ -45,11 +44,12 @@ export function Dashboardlayout() {
     },
   ];
   const [open, setOpen] = useState(false);
+
   return (
-    <div className="rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
+    <div className="h-screen flex flex-row bg-gray-100 dark:bg-gray-900">
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-col flex-1 overflow-y-auto">
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-5">
               {links.map((link, idx) => (
@@ -82,7 +82,10 @@ export function Dashboardlayout() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Neutrality/>
+      {/* Content Area */}
+      <div className="flex-1 overflow-auto">
+        <Neutrality />
+      </div>
     </div>
   );
 }
@@ -107,4 +110,4 @@ export const LogoIcon = () => (
   </Link>
 );
 
-export default Dashboardlayout
+export default Dashboardlayout;
