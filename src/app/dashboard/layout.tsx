@@ -5,7 +5,7 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Carbonsink, { Dashboard } from "./page";
+import { Dashboard } from "./page";
 
 import {
   IconDashboard,
