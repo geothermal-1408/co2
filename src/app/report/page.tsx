@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Plus, Trash2 } from "lucide-react";
+import { ArrowRight, Plus, Trash2, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +31,17 @@ export default function CarbonReport() {
   const [inputs, setInputs] = useState([""]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [analyzeClicked, setAnalyzeClicked] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const { setTheme } = useTheme();
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (darkMode) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   const handleInputChange = (index: number, value: string) => {
     const newInputs = [...inputs];
@@ -58,13 +70,22 @@ export default function CarbonReport() {
       style={{ marginLeft: "5px" }}
     >
       {/* Sidebar spacing */}
-      <div className="flex justify-center">
-        <div className="bg-gradient-to-r from-blue-500 to-green-500 text-black py-3 px-6 rounded-md shadow-md">
-          <h1 className="text-4xl font-bold ">
-            Carbon Neutrality Pathway Analysis
+        <header className="flex justify-between items-center mb-8 ">
+          <h1 className="bg-gradient-to-r from-blue-500 to-green-500 text-3xl font-extrabold text-center tracking-wide flex-1">
+            Carbon Report 📊
           </h1>
-        </div>
-      </div>
+          <button
+            onClick={toggleDarkMode}
+            aria-label="Toggle Dark Mode"
+            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          >
+            {darkMode ? (
+              <Sun className="w-6 h-6 text-yellow-400" />
+            ) : (
+              <Moon className="w-6 h-6 text-blue-500" />
+            )}
+          </button>
+        </header>
 
       <div className="report-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {inputs.map((input, index) => (
