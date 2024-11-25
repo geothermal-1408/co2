@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { useTheme } from "next-themes";
+import { Sun, Moon } from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -18,120 +16,6 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import {
-  IconDashboard,
-  IconLeaf,
-  IconGraph,
-  IconScale,
-  IconFileReport,
-} from "@tabler/icons-react";
-
-export function SideBar() {
-  const links = [
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-      icon: (
-        <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Carbon Footprint",
-      href: "/footprint",
-      icon: (
-        <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Sink Analysis",
-      href: "/carbonsink",
-      icon: (
-        <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Neutrality",
-      href: "/neutrality",
-      icon: (
-        <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Report",
-      href: "/report",
-      icon: (
-        <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
-      ),
-    },
-  ];
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
-      <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            {open ? <Logo /> : <LogoIcon />}
-            <div className="mt-8 flex flex-col gap-5">
-              {links.map((link, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <SidebarLink link={link} />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <SidebarLink
-              link={{
-                label: "John Doe",
-                href: "/profile",
-                icon: (
-                  <Image
-                    src=""
-                    className="h-9 w-9 flex-shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
-                ),
-              }}
-            />
-          </div>
-        </SidebarBody>
-      </Sidebar>
-      <Dashboard />
-    </div>
-  );
-}
-
-// Logo Components
-export const Logo = () => (
-  <Link
-    href="/dashboard"
-    className="font-normal flex space-x-5 items-center text-m text-black py-1 "
-  >
-    <div className="h-7 w-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="font-semibold text-lg text-black dark:text-white whitespace-pre"
-    >
-      CarbonTrack
-    </motion.span>
-  </Link>
-);
-
-export const LogoIcon = () => (
-  <Link
-    href="/profile"
-    className="font-normal flex space-x-2 items-center text-sm text-black py-1"
-  >
-    <div className="h-5 w-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
-  </Link>
-);
 
 export const Dashboard = () => {
   const emissionsData = [
@@ -169,22 +53,47 @@ export const Dashboard = () => {
     "#9966FF",
     "#FF9F40",
   ];
+
+  const [darkMode, setDarkMode] = useState(false);
+  const { setTheme } = useTheme();
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (darkMode) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
   return (
-    <div className="container flex min-h-screen overflow-y-auto">
+    <div className="flex min-h-screen overflow-y-auto">
       <main className="main-content flex-grow p-6">
         {/* Dashboard Section */}
         <section className="dashboard mb-8 text-center">
-          <div className="flex justify-center mb-3">
-            <div className="bg-gradient-to-r from-blue-500 to-green-500 text-black py-2 px-6 rounded-md shadow-md">
-              <h1 className="text-4xl font-bold">DASHBOARD</h1>
-            </div>
-          </div>
+          <header className="flex justify-between items-center mb-8 ">
+            <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
+              Dashboard💨
+            </h1>
+            <button
+              onClick={toggleDarkMode}
+              aria-label="Toggle Dark Mode"
+              className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              {darkMode ? (
+                <Sun className="w-6 h-6 text-yellow-400" />
+              ) : (
+                <Moon className="w-6 h-6 text-blue-500" />
+              )}
+            </button>
+          </header>
 
           {/* Responsive Grid for Dashboard Cards */}
           <div className="dashboard-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Total Emissions */}
             <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform">
-              <h2 className="text-2xl mb-4 text-black font-bold">Total Emissions</h2>
+              <h2 className="text-2xl mb-4 text-black font-bold">
+                Total Emissions
+              </h2>
               <p className="text-xl mb-6">12,345 tCO2e</p>
               <BarChart
                 width={300}
@@ -202,7 +111,9 @@ export const Dashboard = () => {
 
             {/* Card 2: Energy Consumption */}
             <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform">
-              <h2 className="text-2xl mb-4 text-black font-bold">Energy Consumption</h2>
+              <h2 className="text-2xl mb-4 text-black font-bold">
+                Energy Consumption
+              </h2>
               <p className="text-xl mb-6">45,678 MWh</p>
               <LineChart
                 width={300}
@@ -225,7 +136,9 @@ export const Dashboard = () => {
 
             {/* Card 3: Carbon Intensity */}
             <div className="card p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform">
-              <h2 className="text-2xl mb-4 text-black font-bold">Carbon Intensity</h2>
+              <h2 className="text-2xl mb-4 text-black font-bold">
+                Carbon Intensity
+              </h2>
               <p className="text-xl mb-6">0.85 tCO2e/t</p>
               <PieChart width={300} height={250}>
                 <Pie
@@ -258,7 +171,9 @@ export const Dashboard = () => {
           <div className="strategy-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Strategy Card 1 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-              <h3 className="text-xl mb-4 text-black font-bold">Renewable Energy Integration</h3>
+              <h3 className="text-xl mb-4 text-black font-bold">
+                Renewable Energy Integration
+              </h3>
               <p>
                 Explore opportunities to increase the share of renewable energy
                 in the mine’s energy mix, such as solar and wind.
@@ -267,7 +182,9 @@ export const Dashboard = () => {
 
             {/* Strategy Card 2 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-              <h3 className="text-xl mb-4 text-black font-bold">Energy Efficiency Measures</h3>
+              <h3 className="text-xl mb-4 text-black font-bold">
+                Energy Efficiency Measures
+              </h3>
               <p>
                 Implement energy-efficient technologies and optimize processes
                 to reduce overall energy consumption.
@@ -276,7 +193,9 @@ export const Dashboard = () => {
 
             {/* Strategy Card 3 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-              <h3 className="text-xl mb-4 text-black font-bold">Carbon Capture and Storage</h3>
+              <h3 className="text-xl mb-4 text-black font-bold">
+                Carbon Capture and Storage
+              </h3>
               <p>
                 Explore the feasibility of carbon capture and storage
                 technologies to mitigate emissions.
@@ -289,4 +208,4 @@ export const Dashboard = () => {
   );
 };
 
-export default SideBar;
+export default Dashboard;
