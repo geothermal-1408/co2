@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import LineChart from "@/components/ui/LineChart";
 import React, { useState } from "react";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 export function CarbonFootprintAnalysis() {
   const [electricity, setElectricity] = useState("");
@@ -13,6 +14,17 @@ export function CarbonFootprintAnalysis() {
   const [footprint, setFootprint] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const { setTheme } = useTheme();
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (darkMode) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   const handleCalculate = async () => {
     const electricityValue = parseFloat(electricity);
@@ -64,13 +76,24 @@ export function CarbonFootprintAnalysis() {
   return (
     <div className="min-h-screen w-full overflow-y-auto flex flex-col bg-gray-50 dark:bg-gray-900">
       {/* Page Header */}
-      <header className="bg-gradient-to-r from-blue-500 to-green-500 text-white py-6">
-        <div className="container mx-auto text-center">
-          <h1 className="text-3xl font-bold text-black">Carbon Footprint Analyzer</h1>
-          <p className="mt-2 text-lg text-black">
-            Measure your environmental impact and take steps toward sustainability.
-          </p>
-        </div>
+      <header className="flex justify-between items-center mb-8 mt-8 px-4">
+        {/* Centered Title */}
+        <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
+          Carbon Footprint 👣
+        </h1>
+
+        {/* Dark Mode Toggle Button */}
+        <button
+          onClick={toggleDarkMode}
+          aria-label="Toggle Dark Mode"
+          className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        >
+          {darkMode ? (
+            <Sun className="w-6 h-6 text-yellow-400" />
+          ) : (
+            <Moon className="w-6 h-6 text-blue-500" />
+          )}
+        </button>
       </header>
 
       <div className="container mx-auto py-10 px-4 lg:px-8">
@@ -82,7 +105,6 @@ export function CarbonFootprintAnalysis() {
               <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
                 Energy Use Overview
               </h2>
-            
             </div>
 
             {/* Right: Input Cards */}
