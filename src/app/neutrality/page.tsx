@@ -19,7 +19,7 @@ export default function Neutrality() {
   };
 
   return (
-    <div className="container mx-auto p-6 space-y-12">
+    <div className="mx-auto p-6 space-y-12">
       {/* Header */}
       <header className="flex justify-between items-center mb-8 ">
         <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
