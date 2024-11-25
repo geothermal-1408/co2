@@ -7,6 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useSession, signIn, signOut } from "next-auth/react";
 import {
   IconBrandGithub,
   IconBrandGoogle,
@@ -35,6 +36,7 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const router = useRouter();
+  const { data: session } = useSession();
 
   // Input change handler for form fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,6 +230,7 @@ export default function SignUp() {
           <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
+            onClick={() => signIn("google")}
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
