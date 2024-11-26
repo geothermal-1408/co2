@@ -67,7 +67,7 @@ export function Dashboardlayout() {
             <SidebarLink
               link={{
                 label: "John Doe",
-                href: "#",
+                href: "/profile",
                 icon: (
                   <Image
                     src=""
