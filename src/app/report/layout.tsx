@@ -56,7 +56,7 @@ export function Dashboardlayout() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-row bg-gray-100 dark:bg-gray-900">
+    <div className=" h-screen flex flex-row bg-gray-100 dark:bg-gray-900">
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto">
