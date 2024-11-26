@@ -65,7 +65,7 @@ export default function CarbonReport() {
   };
 
   return (
-    <div className="py-10 overflow-y-auto overflow-x-hidden">
+    <div className="py-6 overflow-y-auto overflow-x-hidden">
 
       {/* Sidebar spacing */}
         <header className="flex justify-between items-center mb-8 ">
