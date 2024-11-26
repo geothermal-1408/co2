@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import MapComponent from "@/components/Map";
 import { LineChart, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
+import Heatmap from '@/components/Map';
 
 type States = {
   [key: string]: [number, number];
@@ -22,6 +22,19 @@ const Carbonsink: React.FC = () => {
     NewYork: [40.7128, -74.006],
     Washington: [47.7511, -120.7401],
   };
+
+  const heatData: [number, number, number][] = [
+    [51.505, -0.09, 0.5],
+    [51.51, -0.1, 0.7],
+    [51.49, -0.08, 0.9],
+    [51.505, -0.09, 0.5],
+    [51.51, -0.1, 0.7],
+    [51.49, -0.08, 0.9],
+    [51.505, -0.09, 0.5],
+    [51.51, -0.1, 0.7],
+    [51.49, -0.08, 1.9],
+  ];
+
   const [darkMode, setDarkMode] = useState(false);
   const { setTheme } = useTheme();
 
@@ -122,7 +135,8 @@ const Carbonsink: React.FC = () => {
 
           {/* Map Display */}
           <div className="flex-1 bg-gray-200 dark:bg-gray-800 h-96 rounded-lg shadow-md flex items-center justify-center relative">
-            <MapComponent position={coordinates} />
+            {/* <MapComponent position={coordinates} /> */}
+            <Heatmap heatData={heatData} />
           </div>
         </div>
         {/* Metrics Section */}
