@@ -1,4 +1,3 @@
-// pages/profile.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -11,23 +10,43 @@ import {
   IconSun,
   IconMoon,
 } from "@tabler/icons-react";
+import { useSession, signOut } from "next-auth/react"; // Import NextAuth hooks
 
 const ProfilePage: React.FC = () => {
-  const username = "John Doe"; // Replace with your username
-  const email = "johndoe@example.com"; // Replace with your email
-
+  const { data: session, status } = useSession(); // Get user session
   const [darkMode, setDarkMode] = useState(false);
 
+  if (status === "loading") {
+    return <p>Loading...</p>; // Loading state
+  }
+
+  if (!session) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-100">
+        <h1 className="text-3xl font-bold text-gray-800">You are not signed in.</h1>
+        <Button
+          onClick={() => window.location.replace("/api/auth/signin")}
+          className="mt-4 bg-blue-500 hover:bg-blue-600 text-white"
+        >
+          Sign In
+        </Button>
+      </div>
+    );
+  }
+
+  const username = session.user?.name || "User"; // Use session data
+  const email = session.user?.email || "Email not found";
+
   const handleDeleteProfile = () => {
-    alert("Profile deleted!"); // Logic to delete the profile
+    alert("Profile deleted!"); // Implement deletion logic
   };
 
   const handleLogout = () => {
-    localStorage.getItem("authtoken");
+    signOut(); // Sign out using NextAuth
   };
 
   const handleViewHistory = () => {
-    alert("Viewing history..."); // Logic for viewing history
+    alert("Viewing history..."); // Implement history view logic
   };
 
   const toggleDarkMode = () => {
