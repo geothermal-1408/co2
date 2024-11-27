@@ -42,7 +42,7 @@ const ProfilePage: React.FC = () => {
   };
 
   const handleLogout = () => {
-    signOut(); // Sign out using NextAuth
+    signOut({ callbackUrl: "/" }); // Sign out using NextAuth
   };
 
   const handleViewHistory = () => {
