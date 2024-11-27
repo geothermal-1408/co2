@@ -96,7 +96,7 @@ const ProfilePage: React.FC = () => {
           </Button>
           <Button
             variant="default"
-            onClick={handleLogout}
+            onClick={() => signOut({ callbackUrl: '/api/auth/logout'})}
             className="w-full flex items-center justify-center bg-gray-500 hover:bg-gray-600 text-white dark:bg-gray-700 dark:hover:bg-gray-800"
           >
             <IconLogout className="w-5 h-5 mr-2" />

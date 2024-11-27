@@ -20,11 +20,10 @@ const handler = NextAuth({
       // Ensure baseUrl is explicitly defined
       baseUrl = "http://localhost:3000"; // Replace with your production URL in deployment
 
-      if (url.startsWith("api/auth/logout")) {
-        return baseUrl;
+      if (url.startsWith("/api/auth/logout")) {
+        return baseUrl; // Redirect to home page after sign out
       }
-
-      // Default behavior (fallback)
+      // Default behavior: Redirect to the dashboard after sign in
       return `${baseUrl}/dashboard`;
     },
   },
