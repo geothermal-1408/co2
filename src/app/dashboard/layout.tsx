@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Dashboard } from "./page";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import {
   IconDashboard,
@@ -14,36 +16,80 @@ import {
   IconScale,
   IconFileReport,
 } from "@tabler/icons-react";
+import LoadingState from "@/components/LoadingState/LoadingState";
 
 export function Dashboardlayout() {
   const links = [
     {
       label: "Dashboard",
       href: "/dashboard",
-      icon: <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Carbon Footprint",
       href: "/footprint",
-      icon: <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Sink Analysis",
       href: "/carbonsink",
-      icon: <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Neutrality",
       href: "/neutrality",
-      icon: <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Report",
       href: "/report",
-      icon: <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
   ];
   const [open, setOpen] = useState(false);
+
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === "loading") {
+      // Show loading state while session is loading
+      setIsLoading(true);
+      return;
+    }
+
+    // Once the session is loaded, check if user is authenticated
+    if (!session) {
+      // If not authenticated, redirect to login page and show alert
+      alert("Please sign up or log in to access this page.");
+      router.push("/login");
+    } else {
+      // If authenticated, stop loading
+      setIsLoading(false);
+    }
+  }, [status, session, router]);
+
+  if (isLoading) {
+    // Show loading state while session is loading
+    return (
+      <LoadingState
+        message="Loading..."
+        submessage="Please wait while we check your session."
+      />
+    );
+  }
 
   return (
     <div className="h-screen flex flex-row bg-gray-100 dark:bg-gray-900">
@@ -92,7 +138,10 @@ export function Dashboardlayout() {
 
 // Logo Components
 export const Logo = () => (
-  <Link href="/dashboard" className="font-normal flex space-x-5 items-center text-m text-black py-1 ">
+  <Link
+    href="/dashboard"
+    className="font-normal flex space-x-5 items-center text-m text-black py-1 "
+  >
     <div className="h-7 w-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
     <motion.span
       initial={{ opacity: 0 }}
@@ -105,7 +154,10 @@ export const Logo = () => (
 );
 
 export const LogoIcon = () => (
-  <Link href="/profile" className="font-normal flex space-x-2 items-center text-sm text-black py-1">
+  <Link
+    href="/profile"
+    className="font-normal flex space-x-2 items-center text-sm text-black py-1"
+  >
     <div className="h-5 w-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
   </Link>
 );
