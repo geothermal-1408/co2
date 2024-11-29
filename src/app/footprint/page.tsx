@@ -9,8 +9,10 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
 export function CarbonFootprintAnalysis() {
-  const [electricity, setElectricity] = useState("");
-  const [fuel, setFuel] = useState("");
+  const [production, setProduction] = useState("");
+  const [conversion, setConversion] = useState("");
+  const [emission, setEmission] = useState("");
+  const [exclusion, setExclusion] = useState("");
   const [footprint, setFootprint] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -27,12 +29,19 @@ export function CarbonFootprintAnalysis() {
   };
 
   const handleCalculate = async () => {
-    const electricityValue = parseFloat(electricity);
-    const fuelValue = parseFloat(fuel);
+    const productionValue = parseFloat(production);
+    const conversionValue = parseFloat(conversion);
+    const emissionValue = parseFloat(emission);
+    const exclusionValue = parseFloat(exclusion);
 
     // Validate inputs
-    if (isNaN(electricityValue) || isNaN(fuelValue)) {
-      alert("Please enter valid numbers for both inputs.");
+    if (
+      isNaN(productionValue) ||
+      isNaN(conversionValue) ||
+      isNaN(emissionValue) ||
+      isNaN(exclusionValue)
+    ) {
+      alert("Please enter valid numbers for the inputs.");
       return;
     }
 
@@ -45,8 +54,10 @@ export function CarbonFootprintAnalysis() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          electricity: electricityValue,
-          fuel: fuelValue,
+          electricity: productionValue,
+          conversion: conversionValue,
+          emission: emissionValue,
+          exclusion: exclusionValue,
         }),
       });
 
@@ -67,8 +78,9 @@ export function CarbonFootprintAnalysis() {
   };
 
   const handleCalculateAgain = () => {
-    setElectricity("");
-    setFuel("");
+    setProduction("");
+    setConversion("");
+    setEmission("");
     setFootprint(null);
     setShowResult(false);
   };
@@ -111,14 +123,14 @@ export function CarbonFootprintAnalysis() {
             <div className="space-y-6">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
                 <Label className="text-gray-700 dark:text-gray-300">
-                  Electricity Consumption (kWh/Year)
+                  Yearly Coal Production (Tonnes)
                 </Label>
-                <Tooltip content="Total annual electricity usage in kilowatt-hours">
+                <Tooltip content="Total annual coal production in Tonnes">
                   <Input
                     type="number"
                     placeholder="Enter value"
-                    value={electricity}
-                    onChange={(e) => setElectricity(e.target.value)}
+                    value={production}
+                    onChange={(e) => setProduction(e.target.value)}
                     className="mt-2 bg-white ml-6 text-black border dark:border-black"
                   />
                 </Tooltip>
@@ -126,14 +138,28 @@ export function CarbonFootprintAnalysis() {
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
                 <Label className="text-gray-700 dark:text-gray-300">
-                  Fossil Fuel Consumption (Liters/Year)
+                  Coal Type Conversion Factor (TJ/kt)
                 </Label>
-                <Tooltip content="Total annual fossil fuel consumption in liters">
+                <Tooltip content="the coal type conversion factor in TJ/Kt">
                   <Input
                     type="number"
                     placeholder="Enter value"
-                    value={fuel}
-                    onChange={(e) => setFuel(e.target.value)}
+                    value={conversion}
+                    onChange={(e) => setConversion(e.target.value)}
+                    className="mt-2 bg-white ml-6 text-black border dark:border-black"
+                  />
+                </Tooltip>
+              </div>
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                <Label className="text-gray-700 dark:text-gray-300">
+                  CO2 Emissions factor (CO2/TJ)
+                </Label>
+                <Tooltip content="the effective co2 emissions factor in CO2/TJ">
+                  <Input
+                    type="number"
+                    placeholder="Enter value"
+                    value={emission}
+                    onChange={(e) => setEmission(e.target.value)}
                     className="mt-2 bg-white ml-6 text-black border dark:border-black"
                   />
                 </Tooltip>
@@ -150,31 +176,34 @@ export function CarbonFootprintAnalysis() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <Label className="text-gray-700 dark:text-gray-300">
-                Extraction Process
+                Coal Type
               </Label>
               <select
                 className="mt-2 block w-full bg-gray-50 dark:bg-white border dark:border-black rounded-md p-2 text-black"
                 defaultValue=""
               >
                 <option value="" disabled>
-                  Select Mining Type
+                  Select Coal Type
                 </option>
-                <option value="Placer Mining">Placer Mining</option>
-                <option value="Strip Mining">Strip Mining</option>
-                <option value="Surface Mining">Surface Mining</option>
-                <option value="Hydraulic Mining">Hydraulic Mining</option>
+                <option value="Bituminous">Bituminous</option>
+                <option value="Anthracite">Anthracite</option>
+                <option value="Lignite">Lignite</option>
               </select>
             </div>
 
             <div>
               <Label className="text-gray-700 dark:text-gray-300">
-                Coal Processing Energy (kWh/Year)
+                Exclusion factor
               </Label>
-              <Input
-                type="number"
-                placeholder="Enter value"
-                className="mt-2 bg-white text-black border dark:border-black"
-              />
+              <Tooltip content="the Exclusion factor (e.g., 0.017)">
+                <Input
+                  type="number"
+                  placeholder="Enter value"
+                  value={exclusion}
+                  onChange={(e) => setExclusion(e.target.value)}
+                  className="mt-2 bg-white text-black border dark:border-black"
+                />
+              </Tooltip>
             </div>
           </div>
         </section>
@@ -220,12 +249,11 @@ export function CarbonFootprintAnalysis() {
         </p>
         <ul className="list-disc list-inside text-white space-y-2">
           <li>
-            <strong>Electricity Consumption:</strong> Total kWh used by your
-            operations.
+            <strong>Yearly Coal Production:</strong> Amount of Coal production
+            in an year
           </li>
           <li>
-            <strong>Fossil Fuel Consumption:</strong> Amount of fossil fuels
-            used.
+            <strong>Coal Type:</strong> Type of coal used.
           </li>
           <li>
             <strong>Extraction Process:</strong> Type of mining being conducted.
