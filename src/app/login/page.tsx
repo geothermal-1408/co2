@@ -15,15 +15,13 @@ import {
 } from "@tabler/icons-react";
 
 interface Errors {
-  firstname?: string;
-  lastname?: string;
+  email?: string;
   password?: string;
 }
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    email: "",
     password: "",
   });
 
@@ -44,10 +42,8 @@ export default function Login() {
   const validateInputs = (): boolean => {
     const newErrors: Errors = {};
 
-    if (!formData.firstname.trim())
-      newErrors.firstname = "First Name cannot be empty";
-    if (!formData.lastname.trim())
-      newErrors.lastname = "Last Name cannot be empty";
+    if (!formData.email.trim())
+      newErrors.email = "Email Address cannot be empty";
     if (formData.password.length < 6)
       newErrors.password = "Password must be at least 6 characters long";
 
@@ -62,9 +58,8 @@ export default function Login() {
     e.preventDefault();
 
     if (validateInputs()) {
-      const username = formData.firstname + formData.lastname;
       const payload = {
-        username,
+        email: formData.email,
         password: formData.password,
       };
 
@@ -118,31 +113,17 @@ export default function Login() {
         <form className="my-8" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
-              <Label htmlFor="firstname">First name</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
-                id="firstname"
-                placeholder="Tony"
+                id="email"
+                placeholder="ironman@gmail.com"
                 type="text"
-                name="firstname"
-                value={formData.firstname}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
               />
-              {errors.firstname && (
-                <small className="text-red-500">{errors.firstname}</small>
-              )}
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <Label htmlFor="lastname">Last name</Label>
-              <Input
-                id="lastname"
-                placeholder="Stark"
-                type="text"
-                name="lastname"
-                value={formData.lastname}
-                onChange={handleChange}
-              />
-              {errors.lastname && (
-                <small className="text-red-500">{errors.lastname}</small>
+              {errors.email && (
+                <small className="text-red-500">{errors.email}</small>
               )}
             </LabelInputContainer>
           </div>

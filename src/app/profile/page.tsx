@@ -40,6 +40,10 @@ const ProfilePage: React.FC = () => {
     alert("Profile deleted!"); // Implement deletion logic
   };
 
+  const handleLogout = () => {
+    signOut({ callbackUrl: "/" }); // Sign out using NextAuth
+  };
+
   const handleViewHistory = () => {
     alert("Viewing history..."); // Implement history view logic
   };
