@@ -7,7 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useSession, signIn } from "next-auth/react";
+//import { useSession, signIn } from "next-auth/react";
 import {
   IconBrandGithub,
   IconBrandGoogle,

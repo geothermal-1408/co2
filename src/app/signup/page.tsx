@@ -7,12 +7,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import {
   IconBrandGithub,
   IconBrandGoogle,
   IconBrandFacebook,
 } from "@tabler/icons-react";
+
 
 interface Errors {
   firstname?: string;
@@ -36,7 +37,6 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const router = useRouter();
-  const { data: session } = useSession();
 
   // Input change handler for form fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"; // Adjust the import based on y
 import {
   IconTrash,
   IconLogout,
-  IconUserFilled,
   IconHistory,
   IconSun,
   IconMoon,
@@ -39,10 +38,6 @@ const ProfilePage: React.FC = () => {
 
   const handleDeleteProfile = () => {
     alert("Profile deleted!"); // Implement deletion logic
-  };
-
-  const handleLogout = () => {
-    signOut(); // Sign out using NextAuth
   };
 
   const handleViewHistory = () => {
