@@ -19,14 +19,16 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import About from "./about"; 
+import About from "./about";
+import Contact from "./contact";
 
 export default function Component() {
   const router = useRouter();
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleGetStartedClick = () => {
-    router.push("/login"); // Redirect to the login page
+    router.push("/login");
   };
 
   const openAboutModal = () => {
@@ -35,6 +37,14 @@ export default function Component() {
 
   const closeAboutModal = () => {
     setIsAboutModalOpen(false);
+  };
+
+  const openContactModal = () => {
+    setIsContactModalOpen(true);
+  };
+
+  const closeContactModal = () => {
+    setIsContactModalOpen(false);
   };
 
   const words = [
@@ -52,6 +62,7 @@ export default function Component() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 rounded-xl bg-neutral-200 dark:bg-gray-900 shadow-sm">
         <div className="flex items-center space-x-2">
           <BarChart className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -73,12 +84,12 @@ export default function Component() {
           >
             Initiatives
           </Link>
-          <Link
+          <button 
+            onClick={openContactModal}
             className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
-            href="/contact"
           >
             Contact
-          </Link>
+          </button>
           <Button1
             variant="outline"
             className="text-sm bg-white dark:bg-slate-900 text-black dark:text-white hover:scale-105 transition-transform"
@@ -89,6 +100,7 @@ export default function Component() {
         </nav>
       </header>
 
+      {/* Main Content */}
       <main className="flex-grow px-6 py-8 bg-white dark:bg-gray-800">
         {/* Hero Section */}
         <section
@@ -199,6 +211,7 @@ export default function Component() {
         </section>
       </main>
 
+      {/* Footer */}
       <footer className="px-6 py-4 bg-gray-800 text-white text-center">
         <p>&copy; 2024 CarbonTrack India. All rights reserved.</p>
       </footer>
@@ -220,6 +233,27 @@ export default function Component() {
               ×
             </button>
             <About />
+          </div>
+        </div>
+      )}
+
+      {/* Contact Modal */}
+      {isContactModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center"
+          onClick={closeContactModal}
+        >
+          <div 
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={closeContactModal}
+              className="absolute top-2 right-2 text-white bg-red-500 rounded-full w-8 h-8 flex items-center justify-center z-60"
+            >
+              ×
+            </button>
+            <Contact />
           </div>
         </div>
       )}
