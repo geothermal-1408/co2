@@ -19,7 +19,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import About from "./about"; // Import the About component
+import About from "./about"; 
 
 export default function Component() {
   const router = useRouter();
