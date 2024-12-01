@@ -223,15 +223,9 @@ export default function Component() {
           onClick={closeAboutModal}
         >
           <div 
-            className="relative"
+            className="relative bg-white dark:bg-black rounded-lg shadow-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <button 
-              onClick={closeAboutModal}
-              className="absolute top-2 right-2 text-white bg-red-500 rounded-full w-8 h-8 flex items-center justify-center z-60"
-            >
-              ×
-            </button>
             <About />
           </div>
         </div>
@@ -244,15 +238,9 @@ export default function Component() {
           onClick={closeContactModal}
         >
           <div 
-            className="relative"
+            className="relative bg-white dark:bg-black rounded-lg shadow-lg max-w-4xl w-full  overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <button 
-              onClick={closeContactModal}
-              className="absolute top-2 right-2 text-white bg-red-500 rounded-full w-8 h-8 flex items-center justify-center z-60"
-            >
-              ×
-            </button>
             <Contact />
           </div>
         </div>
