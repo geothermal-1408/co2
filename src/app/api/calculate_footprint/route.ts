@@ -17,32 +17,44 @@
 //     }
 // }
 
-import { NextApiRequest,NextApiResponse } from "next";
-import {footprint_input} from "@/lib/types"
-import analyzeEmission from "../../utils/footprint_algo"
+import { NextRequest, NextResponse } from "next/server";
+import { footprint_input } from "@/lib/types";
+import analyzeEmission from "../../utils/footprint_algo";
+// import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET (req:NextApiRequest,res:NextApiResponse){
-    const body:footprint_input = req.body()
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const {
+      coal_type,
+      production,
+      exclusion_factor,
+      coal_conversion_factor,
+      co2_emissions_factor,
+    } = body;
 
-    const {coal_type,production,exclusion_factor,coal_conversion_factor,co2_emissions_factor} = body
-    try{
-    const {message,flag,emmision} = analyzeEmission(
-        coal_type.toLowerCase(),
-        production,
-        exclusion_factor,
-        coal_conversion_factor,
-        co2_emissions_factor
-    )
-    res.status(200).json({
-        emmision,
-        message,
-        status:flag
-        ?"Action recommended: Address identified issues to reduce CO2 emissions."
-        : "Sustainable: CO2 emissions are within desired levels.",
-    })
-    } catch(e){
-        res.status(500).json({
-            error:"internal server Error"
-        })
-    }
+    const { messages, flag, emissions } = analyzeEmission(
+      coal_type.toLowerCase(),
+      production,
+      exclusion_factor,
+      coal_conversion_factor,
+      co2_emissions_factor
+    );
+
+    return NextResponse.json(
+      {
+        emissions,
+        messages,
+        status: flag
+          ? "Action recommended: Address identified issues to reduce CO2 emissions."
+          : "Sustainable: CO2 emissions are within desired levels.",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Internal server error." },
+      { status: 500 }
+    );
+  }
 }
