@@ -43,14 +43,17 @@ function calculateCO2Emissions(
   
     if (exclusionFactor > 0.025) {
       messages.push(
-        "The exclusion factor, which estimates the fraction of extracted coal that is not ultimately combusted (i.e., lost along the supply chain or used for non-combustion purposes), is too high. The desired value is 0.017."
+        `The exclusion factor, which estimates the fraction of extracted coal that is not ultimately combusted (i.e., lost along the supply chain or used for non-combustion purposes), is too high. The desired value is 0.017.`
       );
       flag = true;
     }
   
     if (coalType === "bituminous" && (coalConversionFactor < 25 || coalConversionFactor > 30)) {
       messages.push(
-        "Coal type conversion factor is outside the desired range. Suggested steps:\n- Use coal gasification.\n- Employ degasification wells and drainage borewells."
+        `Coal type conversion factor is outside the desired range. 
+        Suggested steps:
+        - Use coal gasification.
+        - Employ degasification wells and drainage borewells.`
       );
       flag = true;
     }
