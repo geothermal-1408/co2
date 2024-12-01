@@ -47,7 +47,7 @@ export default function Contact() {
             </li>
             <li>
               <span className="font-medium text-blue-600">Address:</span>{" "}
-              123 Green Lane, EcoCity, India
+              Heriatage Institute of Technology,Kolkata,India
             </li>
           </ul>
         </div>
