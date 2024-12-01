@@ -113,7 +113,7 @@ export function CarbonFootprintAnalysis() {
         <section className="mb-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left: Chart Visualization */}
-            <div className="bg-white h-[300px] dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div className="bg-white h-[325px] dark:bg-gray-800 rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
                 Energy Use Overview
               </h2>
@@ -192,18 +192,16 @@ export function CarbonFootprintAnalysis() {
             </div>
 
             <div>
-              <Label className="text-gray-700 dark:text-gray-300">
+              <Label className=" text-gray-700 dark:text-gray-300">
                 Exclusion factor
               </Label>
-              <Tooltip content="the Exclusion factor (e.g., 0.017)">
-                <Input
-                  type="number"
-                  placeholder="Enter value"
-                  value={exclusion}
-                  onChange={(e) => setExclusion(e.target.value)}
-                  className="mt-2 bg-white text-black border dark:border-black"
-                />
-              </Tooltip>
+              <Input
+                type="number"
+                placeholder="Enter value"
+                value={exclusion}
+                onChange={(e) => setExclusion(e.target.value)}
+                className="mt-2 bg-white text-black border dark:border-black"
+              />
             </div>
           </div>
         </section>
