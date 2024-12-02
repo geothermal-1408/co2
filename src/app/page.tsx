@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import About from "./about";
 import Contact from "./contact";
+import {CarbonFootprintCard,CarbonNeutralityCard, MitigationStrategiesCard} from "./card";
 
 export default function Component() {
   const router = useRouter();
@@ -126,52 +127,11 @@ export default function Component() {
         {/* Info Cards Section */}
         <section className="max-w-6xl mx-auto mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="hover:scale-105 transition-transform">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Factory className="h-6 w-6 mr-2 text-orange-500" />
-                  Carbon Footprint
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Coal mines in India contribute significantly to the
-                  country's carbon footprint, releasing methane, a potent
-                  greenhouse gas.
-                </p>
-              </CardContent>
-            </Card>
+            <CarbonFootprintCard/>
 
-            <Card className="hover:scale-105 transition-transform">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Leaf className="h-6 w-6 mr-2 text-green-500" />
-                  Carbon Neutrality
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Achieving carbon neutrality involves clean technologies,
-                  energy efficiency, and investing in carbon offset projects
-                  like reforestation.
-                </p>
-              </CardContent>
-            </Card>
+            <CarbonNeutralityCard/>
 
-            <Card className="hover:scale-105 transition-transform">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Truck className="h-6 w-6 mr-2 text-blue-500" />
-                  Mitigation Strategies
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Strategies include methane capture, energy-efficient
-                  equipment, optimized transportation, and land reclamation.
-                </p>
-              </CardContent>
-            </Card>
+            <MitigationStrategiesCard/>
           </div>
         </section>
 
