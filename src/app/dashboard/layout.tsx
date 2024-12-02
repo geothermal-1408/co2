@@ -58,7 +58,7 @@ export function Dashboardlayout() {
   ];
   const [open, setOpen] = useState(false);
 
-  const { data: session, status } = useSession();
+  /*const { data: session, status } = useSession();
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -73,6 +73,7 @@ export function Dashboardlayout() {
     // Once the session is loaded, check if user is authenticated
     if (!session) {
       // If not authenticated, redirect to login page and show alert
+
       alert("Please sign up or log in to access this page.");
       router.push("/login");
     } else {
@@ -89,7 +90,7 @@ export function Dashboardlayout() {
         submessage="Please wait while we check your session."
       />
     );
-  }
+  }*/
 
   return (
     <div className="h-screen flex flex-row bg-gray-100 dark:bg-gray-900">

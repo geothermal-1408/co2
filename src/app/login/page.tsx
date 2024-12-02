@@ -75,9 +75,6 @@ export default function Login() {
         const data = await response.json();
 
         if (response.ok) {
-          const { authtoken } = data;
-          localStorage.setItem("authtoken", authtoken);
-
           // Navigate to dashboard
           router.replace("/dashboard");
         } else {

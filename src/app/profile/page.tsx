@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Button } from "@/components/ui/button"; // Adjust the import based on your Shadcn setup
 import {
   IconTrash,
@@ -9,41 +9,57 @@ import {
   IconSun,
   IconMoon,
 } from "@tabler/icons-react";
+import Router from "next/router";
 import { useSession, signOut } from "next-auth/react"; // Import NextAuth hooks
 
 const ProfilePage: React.FC = () => {
-  const { data: session, status } = useSession(); // Get user session
+  // const { data: session, status } = useSession(); // Get user session
   const [darkMode, setDarkMode] = useState(false);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
-  if (status === "loading") {
-    return <p>Loading...</p>; // Loading state
-  }
+  // if (status === "loading") {
+  //   return <p>Loading...</p>; // Loading state
+  // }
 
-  if (!session) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-100">
-        <h1 className="text-3xl font-bold text-gray-800">You are not signed in.</h1>
-        <Button
-          onClick={() => window.location.replace("/api/auth/signin")}
-          className="mt-4 bg-blue-500 hover:bg-blue-600 text-white"
-        >
-          Sign In
-        </Button>
-      </div>
-    );
-  }
+  // if (!session) {
+  //   return (
+  //     <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-100">
+  //       <h1 className="text-3xl font-bold text-gray-800">
+  //         You are not signed in.
+  //       </h1>
+  //       <Button
+  //         onClick={() => window.location.replace("/api/auth/signin")}
+  //         className="mt-4 bg-blue-500 hover:bg-blue-600 text-white"
+  //       >
+  //         Sign In
+  //       </Button>
+  //     </div>
+  //   );
+  // }
 
-  const username = session.user?.name || "User"; // Use session data
-  const email = session.user?.email || "Email not found";
+  const handleDeleteProfile = async () => {
+    try {
+      const response = await fetch("api/delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-  const handleDeleteProfile = () => {
-    alert("Profile deleted!"); // Implement deletion logic
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        Router.replace("/"); // Redirect to home page
+      } else {
+        alert(data.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
-
-  const handleLogout = () => {
-    signOut({ callbackUrl: "/" }); // Sign out using NextAuth
-  };
-
   const handleViewHistory = () => {
     alert("Viewing history..."); // Implement history view logic
   };
@@ -95,7 +111,7 @@ const ProfilePage: React.FC = () => {
           </Button>
           <Button
             variant="default"
-            onClick={() => signOut({ callbackUrl: '/api/auth/logout'})}
+            onClick={() => signOut({ callbackUrl: "/api/auth/logout" })}
             className="w-full flex items-center justify-center bg-gray-500 hover:bg-gray-600 text-white dark:bg-gray-700 dark:hover:bg-gray-800"
           >
             <IconLogout className="w-5 h-5 mr-2" />
