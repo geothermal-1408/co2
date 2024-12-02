@@ -1,16 +1,16 @@
-import jwt from 'jsonwebtoken';
-export const generateToken = (user) => {
-  return jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-};
+import 'server-only'
+import { jwtVerify } from 'jose'
 
-export const authenticate = async (req) => {
-  const token = req.cookies.token;
-  if (!token) return null;
-  
+const secretKey = process.env.JWT_SECRET
+const encodedKey = new TextEncoder().encode(secretKey)
+
+export async function decrypt(session) {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    return decoded;
-  } catch (err) {
-    return null;
+    const { payload } = await jwtVerify(session, encodedKey, {
+      algorithms: ['HS256'],
+    })
+    return payload
+  } catch (error) {
+    console.log('Failed to verify session')
   }
-};
+}

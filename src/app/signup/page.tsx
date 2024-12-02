@@ -14,7 +14,6 @@ import {
   IconBrandFacebook,
 } from "@tabler/icons-react";
 
-
 interface Errors {
   firstname?: string;
   lastname?: string;
@@ -33,8 +32,6 @@ export default function SignUp() {
   });
 
   const [errors, setErrors] = useState<Errors>({});
-  const [success, setSuccess] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const router = useRouter();
 
@@ -94,9 +91,6 @@ export default function SignUp() {
         const data = await response.json();
 
         if (response.ok) {
-          const { authtoken } = data;
-          localStorage.setItem("authtoken", authtoken);
-
           // Navigate to dashboard
           router.replace("/dashboard");
         } else {
@@ -106,8 +100,6 @@ export default function SignUp() {
       } catch (e) {
         alert("An error occurred. Please try again later.");
       }
-
-      alert("Signup successful");
     } else {
       alert("please fill out all details properly");
     }
@@ -128,10 +120,6 @@ export default function SignUp() {
           Login
         </Link>
       </p>
-      {success && <p className="text-blue-500 text-center mb-4">{success}</p>}
-      {errorMessage && (
-        <p className="text-red-500 text-center mb-4">{errorMessage}</p>
-      )}
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>

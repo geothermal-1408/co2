@@ -237,34 +237,54 @@ export function CarbonFootprintAnalysis() {
         </section>
       </div>
       <div className="mt-12 ml-5 mr-5 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md space-y-6">
-        <h3 className="text-xl font-bold text-black text-center">
-          Understand Your Carbon Footprint
-        </h3>
-        <p className="text-white text-center">
-          Carbon footprint analysis measures the total greenhouse gases (GHGs)
-          emitted by your activities. This helps in understanding your
-          environmental impact and is crucial for setting reduction targets.
-        </p>
-        <ul className="list-disc list-inside text-white space-y-2">
-          <li>
-            <strong>Yearly Coal Production:</strong> Amount of Coal production
-            in an year
-          </li>
-          <li>
-            <strong>Coal Type:</strong> Type of coal used.
-          </li>
-          <li>
-            <strong>Extraction Process:</strong> Type of mining being conducted.
-          </li>
-          <li>
-            <strong>Coal Processing:</strong> Energy consumed during processing.
-          </li>
-        </ul>
-        <p className="text-center text-white italic">
-          “Reducing your carbon footprint not only helps the environment but
-          also can lead to cost savings and operational efficiency.”
-        </p>
-      </div>
+  <h3 className="text-xl font-bold text-black text-center">
+    Understand Your Carbon Footprint
+  </h3>
+  <p className="text-white text-center">
+    Carbon footprint analysis measures the total greenhouse gases (GHGs)
+    emitted by your activities. This helps in understanding your
+    environmental impact and is crucial for setting reduction targets.
+  </p>
+  <ul className="list-disc list-inside text-white space-y-2">
+    <li>
+      <strong>Yearly Coal Production:</strong> Total amount of coal produced in
+      a specific year.
+    </li>
+    <li>
+      <strong>Coal Type:</strong> Classification of coal based on its carbon
+      content and maturity (e.g., bituminous, anthracite, lignite).
+    </li>
+    <li>
+      <strong>Extraction Process:</strong> Method used to extract coal from the
+      Earth (e.g., surface mining, underground mining).
+    </li>
+    <li>
+      <strong>Coal Processing:</strong> Steps involved in transforming raw coal
+      into usable forms (e.g., cleaning, crushing, pulverizing), and the energy
+      consumed during these processes.
+    </li>
+    <li>
+      <strong>Exclusion Factor:</strong> A factor used to account for coal that
+      is not burned, such as coal used for non-energy purposes or lost during
+      transportation.
+    </li>
+    <li>
+      <strong>Coal Type Conversion Factor:</strong> A factor used to convert
+      the mass of coal into energy units (terajoules, TJ) based on the specific
+      type of coal.
+    </li>
+    <li>
+      <strong>Effective CO2 Emissions Factor:</strong> A factor representing
+      the amount of CO2 emitted per unit of energy produced from a specific type
+      of coal, taking into account factors like carbon content and energy
+      efficiency.
+    </li>
+  </ul>
+  <p className="text-center text-white italic">
+    “Reducing your carbon footprint not only helps the environment but also can
+    lead to cost savings and operational efficiency.”
+  </p>
+</div>
     </div>
   );
 }

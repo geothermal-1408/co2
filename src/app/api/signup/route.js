@@ -20,7 +20,7 @@ export async function POST(req) {
     }
 
     // Check if user already exists
-    const userExists = await User.findOne({ username, email });
+    const userExists = await User.findOne({ email });
     if (userExists) {
       return NextResponse.json({ message: 'User already exists' }, { status: 400 });
     }
@@ -44,7 +44,7 @@ export async function POST(req) {
     const response = NextResponse.json({ message: 'User created' }, { status: 201 });
 
     // Set cookie
-    response.cookies.set('token', authtoken, {
+    response.cookies.set('co2-token', authtoken, {
       httpOnly: true, // Prevent JavaScript access to cookies
       maxAge: 24 * 60 * 60, // Token expiration: 1 day
       path: '/', // Available across the entire application

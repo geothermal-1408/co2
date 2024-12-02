@@ -73,7 +73,7 @@ export default function Component() {
         </div>
         <nav className="flex items-center space-x-4">
           <ModeToggle />
-          <button 
+          <button
             onClick={openAboutModal}
             className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
           >
@@ -85,7 +85,7 @@ export default function Component() {
           >
             Initiatives
           </Link>
-          <button 
+          <button
             onClick={openContactModal}
             className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
           >
@@ -107,11 +107,12 @@ export default function Component() {
         <section
           className="relative bg-cover bg-center py-24 text-black-800 dark:text-white"
           style={{
-            backgroundImage: "url('/placeholder.svg?height=400&width=1200')",
+            backgroundImage: "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
             backgroundBlendMode: "overlay",
           }}
         >
-          <div className="text-center space-y-6">
+          <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
+            <div className="relative z-10 text-center space-y-6">
             <h1 className="text-4xl font-bold text-black-800 dark:text-white">
               Carbon Footprint & Neutrality in Indian Coal Mines
             </h1>
@@ -178,11 +179,11 @@ export default function Component() {
 
       {/* About Modal */}
       {isAboutModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center"
           onClick={closeAboutModal}
         >
-          <div 
+          <div
             className="relative bg-white dark:bg-black rounded-lg shadow-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
@@ -193,12 +194,12 @@ export default function Component() {
 
       {/* Contact Modal */}
       {isContactModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center"
           onClick={closeContactModal}
         >
-          <div 
-            className="relative bg-white dark:bg-black rounded-lg shadow-lg max-w-4xl w-full  overflow-y-auto"
+          <div
+            className="relative bg-white dark:bg-black rounded-lg shadow-lg max-w-4xl w-full overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <Contact />
