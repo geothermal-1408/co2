@@ -92,10 +92,10 @@ export const Dashboard = () => {
             <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
-                <h2 className="text-2xl mb-4 text-black font-bold"><span role="img" aria-label="graph">📊</span>Total Emissions</h2>
+                <h2 className="text-2xl mb-4 text-black font-bold"><span role="img" aria-label="graph">📊</span>Carbon Emissions</h2>
                 <p className="text-lg mb-4 text-black dark:text-white">Understanding total emissions is critical for tracking environmental impact.The total emissions of world equal to almost :</p>
       
-                <p className="text-xl mb-6 ml-12">12,345 tCO2e</p>
+                <p className="text-xl mb-6 ml-12">Total Emissions:  12,345 tCO2e</p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
@@ -162,7 +162,7 @@ export const Dashboard = () => {
                 </h4>
                 <p className="text-lg mb-4 text-black dark:text-white">Energy consumption is a key factor in determining the environmental impact of an organization.The average global consumption equals : </p>
 
-                <p className="text-xl mb-6 ml-4">45,678 MWh</p>
+                <p className="text-xl mb-6 ml-4">Toatl Consumption:  45,678 MWh</p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
@@ -193,7 +193,7 @@ export const Dashboard = () => {
                   <span role="img" aria-label="carbon">🌍</span> Carbon Intensity
                 </h2>
                 <p className="text-lg mb-4 text-black dark:text-white">Carbon intensity refers to the amount of carbon emissions per unit of energy produced.The global average is close to :</p>
-                <p className="text-xl mb-6 ml-4">0.85 tCO2e/t</p>
+                <p className="text-xl mb-6 ml-4">Total Intensity:  0.85 tCO2e/t</p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
