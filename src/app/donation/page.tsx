@@ -12,12 +12,16 @@ export const metadata: Metadata = {
 
 export default function DonatePage() {
   return (
-    <div className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-4 relative" 
-         style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920')" }}>
+    <div 
+      className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-4 relative" 
+      style={{ backgroundImage: "url('https://media.greenmatters.com/brand-img/XyKQ739tU/1440x753/tree-planting-carbon-offset-1554233333607.jpg')" }} // Updated background image
+    >
       <div className="absolute inset-0 bg-black/30" />
       <Card className="w-full max-w-5xl bg-white/80 backdrop-blur-md relative z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" 
-             style={{ backgroundImage: "url('/placeholder.svg?height=800&width=1200')" }} />
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-20" 
+          style={{ backgroundImage: "url('https://media.greenmatters.com/brand-img/XyKQ739tU/1440x753/tree-planting-carbon-offset-1554233333607.jpg')" }} // Updated background image
+        />
         <CardContent className="p-0 relative z-10">
           <div className="md:flex">
             <div className="md:w-1/2 p-8 flex flex-col justify-center">
@@ -61,4 +65,3 @@ export default function DonatePage() {
     </div>
   )
 }
-
