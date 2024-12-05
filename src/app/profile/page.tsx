@@ -13,10 +13,12 @@ import Router from "next/router";
 import { useSession, signOut } from "next-auth/react"; // Import NextAuth hooks
 
 const ProfilePage: React.FC = () => {
-  // const { data: session, status } = useSession(); // Get user session
+  const { data: session, status } = useSession(); // Get user session
   const [darkMode, setDarkMode] = useState(false);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  console.log(session);
+
+  const username = session?.user?.name || "User";
+  const email = session?.user?.email || " ";
 
   // if (status === "loading") {
   //   return <p>Loading...</p>; // Loading state
