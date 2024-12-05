@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
@@ -7,7 +7,6 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
