@@ -3,14 +3,7 @@
 import { Button1 } from "@/components/ui/moving-border";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  BarChart,
-  LineChart,
-  PieChart,
-  Leaf,
-  Factory,
-  Truck,
-} from "lucide-react";
+import { BarChart, LineChart, PieChart } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "@/components/Toggle-mode";
 
@@ -21,7 +14,11 @@ import { useRouter } from "next/navigation";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import About from "./about";
 import Contact from "./contact";
-import {CarbonFootprintCard,CarbonNeutralityCard, MitigationStrategiesCard} from "./card";
+import {
+  CarbonFootprintCard,
+  CarbonNeutralityCard,
+  MitigationStrategiesCard,
+} from "./card";
 
 export default function Component() {
   const router = useRouter();
@@ -81,7 +78,7 @@ export default function Component() {
           </button>
           <Link
             className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
-            href="/Donate"
+            href="/donation"
           >
             Donate
           </Link>
@@ -107,19 +104,23 @@ export default function Component() {
         <section
           className="relative bg-cover bg-center py-24 text-black-800 dark:text-white"
           style={{
-            backgroundImage: "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
+            backgroundImage:
+              "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
             backgroundBlendMode: "overlay",
           }}
         >
           <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-            <div className="relative z-10 text-center space-y-6">
+          <div className="relative z-10 text-center space-y-6">
             <h1 className="text-4xl font-bold text-black-800 dark:text-white">
               Carbon Footprint & Neutrality in Indian Coal Mines
             </h1>
             <div className="text-m text-black-800 dark:text-white flex flex-col items-center justify-center">
               <TypewriterEffectSmooth words={words} />
             </div>
-            <Button size="lg" className="mt-4 hover:scale-105 transition-transform">
+            <Button
+              size="lg"
+              className="mt-4 hover:scale-105 transition-transform"
+            >
               Learn More
             </Button>
           </div>
@@ -128,11 +129,11 @@ export default function Component() {
         {/* Info Cards Section */}
         <section className="max-w-6xl mx-auto mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <CarbonFootprintCard/>
+            <CarbonFootprintCard />
 
-            <CarbonNeutralityCard/>
+            <CarbonNeutralityCard />
 
-            <MitigationStrategiesCard/>
+            <MitigationStrategiesCard />
           </div>
         </section>
 

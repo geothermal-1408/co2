@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 // import "leaflet/dist/leaflet.css";
 // import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
@@ -40,10 +40,11 @@
 
 // export default MapComponent;
 
-
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
+import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
 import "leaflet.heat";
 
@@ -53,10 +54,17 @@ import "leaflet.heat";
 
 type HeatmapProps = {
   heatData: [number, number, number][];
+  location: [number, number];
 };
 
-const Heatmap: React.FC<HeatmapProps> = ({ heatData }) => {
+const Heatmap: React.FC<HeatmapProps> = ({ heatData, location }) => {
   const [mapReady, setMapReady] = useState(false);
+
+  const MapUpdater = () => {
+    const map = useMap();
+    map.setView(location, map.getZoom()); // Dynamically update the map's center
+    return null;
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -93,12 +101,17 @@ const Heatmap: React.FC<HeatmapProps> = ({ heatData }) => {
 
   return (
     <MapContainer
-      center={[51.505, -0.09]}
+      center={[location[0], location[1]]}
       zoom={13}
       style={{ height: "38vh", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
+      <Marker position={[location[0], location[1]]}>
+        <Popup>
+          Coordinates: {location[0]}, {location[1]}
+        </Popup>
+      </Marker>
+      <MapUpdater />
       {/* Add Heatmap Layer */}
       <MapWithHeat />
     </MapContainer>

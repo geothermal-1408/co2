@@ -10,14 +10,15 @@ import {
   IconMoon,
 } from "@tabler/icons-react";
 import Router from "next/router";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const ProfilePage: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const session = useSession();
   console.log(session);
 
-  const username = session?.user?.name || "User";
-  const email = session?.user?.email || " ";
+  const username = "User";
+  const email = " ";
   const [organization, setOrganization] = useState("");
   const [designation, setDesignation] = useState("");
   const [location, setLocation] = useState("");
@@ -120,14 +121,14 @@ const ProfilePage: React.FC = () => {
             placeholder="Change Username"
             className="w-3/4 p-3 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg border border-gray-300 dark:border-gray-600"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            //onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="email"
             placeholder="Change Email"
             className="w-3/4 p-3 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg border border-gray-300 dark:border-gray-600"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            //onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="text"
