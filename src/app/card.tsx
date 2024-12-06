@@ -42,7 +42,7 @@ export const CarbonFootprintCard = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           {/* Modal Content */}
-          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
+          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative border border-orange-500">
             {/* Close Button */}
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-red-600"
@@ -140,7 +140,7 @@ export const CarbonNeutralityCard = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           {/* Modal Content */}
-          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
+          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative border border-green-500">
             {/* Close Button */}
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-red-600"
@@ -248,7 +248,7 @@ export const MitigationStrategiesCard = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
           {/* Modal Content */}
-          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative ">
+          <div className="bg-white dark:bg-black rounded-lg shadow-lg max-w-3xl w-full p-6 relative border border-blue-500">
             {/* Close Button */}
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-red-600"

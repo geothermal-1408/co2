@@ -7,7 +7,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-//import { useSession, signIn } from "next-auth/react";
 import {
   IconBrandGithub,
   IconBrandGoogle,
@@ -79,7 +78,7 @@ export default function Login() {
           router.replace("/dashboard");
         } else {
           // Handle API errors
-          alert(`Signup failed: ${data.message}`);
+          alert(`Login failed: ${data.message}`);
         }
       } catch (e) {
         alert("An error occurred. Please try again later.");
@@ -88,8 +87,20 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="relative max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://www.etifor.com/en/wp-content/uploads/2022/12/img_Carbon-neutrality.jpg')",
+        backgroundSize: "cover", // Ensures the image fills the screen
+        backgroundPosition: "center", // Keeps the image centered
+        backgroundRepeat: "no-repeat", // Prevents image tiling
+        imageRendering: "crisp-edges", // Ensures sharp image quality
+      }}
+    >
+      <div
+        className="relative max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg bg-white bg-opacity-50 backdrop-blur-lg dark:bg-black dark:bg-opacity-50 dark:backdrop-blur-lg"
+      >
         <h2 className="font-bold text-xl text-center text-neutral-800 dark:text-neutral-200">
           Welcome Again to CarbonTrack India
         </h2>
@@ -185,6 +196,7 @@ export default function Login() {
     </div>
   );
 }
+
 const BottomGradient = () => {
   return (
     <>
@@ -193,6 +205,7 @@ const BottomGradient = () => {
     </>
   );
 };
+
 const LabelInputContainer = ({
   children,
   className,

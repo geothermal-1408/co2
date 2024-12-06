@@ -81,9 +81,9 @@ export default function Component() {
           </button>
           <Link
             className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
-            href="/initiatives"
+            href="/Donate"
           >
-            Initiatives
+            Donate
           </Link>
           <button
             onClick={openContactModal}
