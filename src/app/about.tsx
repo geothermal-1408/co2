@@ -1,11 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Users, ChartLine, Target } from "lucide-react";
 
 export default function About() {
   const [showFAQ, setShowFAQ] = useState(false);
   const [activeTab, setActiveTab] = useState('mission');
+  const router = useRouter();
+  const handleGetStartedClick = () => {
+    router.push("/login");
+  };
 
   const renderTabContent = () => {
     switch(activeTab) {
@@ -104,7 +109,7 @@ export default function About() {
         {/* Interactive Section */}
         <div className="relative mb-8 group">
           <button
-            onClick={() => alert("Launching Carbon Footprint Tracker...")}
+            onClick={handleGetStartedClick}
             className="bg-gradient-to-r from-cyan-500 to-indigo-500 px-6 py-3 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition duration-300"
           >
             Track Your Carbon Footprint &rarr;
