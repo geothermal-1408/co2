@@ -15,33 +15,42 @@ import {
   IconFileReport,
 } from "@tabler/icons-react";
 
-
 export function Footprintlayout() {
   const links = [
     {
       label: "Dashboard",
       href: "/dashboard",
-      icon: <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Carbon Footprint",
       href: "/footprint",
-      icon: <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Sink Analysis",
       href: "/carbonsink",
-      icon: <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Neutrality",
       href: "/neutrality",
-      icon: <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
     {
       label: "Report",
       href: "/report",
-      icon: <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />,
+      icon: (
+        <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+      ),
     },
   ];
   const [open, setOpen] = useState(false);
@@ -66,8 +75,8 @@ export function Footprintlayout() {
           <div>
             <SidebarLink
               link={{
-                label: "John Doe",
-                href: "#",
+                label: "profile",
+                href: "/profile",
                 icon: (
                   <Image
                     src=""
@@ -82,14 +91,17 @@ export function Footprintlayout() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <CarbonFootprintAnalysis/>
+      <CarbonFootprintAnalysis />
     </div>
   );
 }
 
 // Logo Components
 export const Logo = () => (
-  <Link href="/dashboard" className="font-normal flex space-x-5 items-center text-m text-black py-1 ">
+  <Link
+    href="/dashboard"
+    className="font-normal flex space-x-5 items-center text-m text-black py-1 "
+  >
     <div className="h-7 w-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
     <motion.span
       initial={{ opacity: 0 }}
@@ -102,9 +114,12 @@ export const Logo = () => (
 );
 
 export const LogoIcon = () => (
-  <Link href="/profile" className="font-normal flex space-x-2 items-center text-sm text-black py-1">
+  <Link
+    href="/profile"
+    className="font-normal flex space-x-2 items-center text-sm text-black py-1"
+  >
     <div className="h-5 w-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex-shrink-0" />
   </Link>
 );
 
-export default Footprintlayout
+export default Footprintlayout;

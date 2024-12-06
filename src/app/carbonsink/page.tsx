@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { LineChart, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-import Heatmap from '@/components/Map';
+import Heatmap from "@/components/Map";
 
 type States = {
   [key: string]: [number, number];
@@ -12,25 +12,29 @@ type States = {
 const Carbonsink: React.FC = () => {
   const [selectedState, setSelectedState] = useState("");
   const [coordinates, setCoordinates] = useState<[number, number]>([
-    37.5652, 126.9774,
-  ]); // Default coordinates (Seoul, South Korea)
+    23.6166, 87.1306,
+  ]); // Default coordinates (Jharia)
 
   const states: States = {
-    California: [36.7783, -119.4179],
-    Texas: [31.9686, -99.9018],
-    Florida: [27.9944, -81.7603],
-    NewYork: [40.7128, -74.006],
-    Washington: [47.7511, -120.7401],
+    Jharkhand: [23.7321, 86.4204],
+    West_Bengal: [23.6166, 87.1306],
+    Chhattisgarh: [23.6693, 86.1511],
+    Madhya_Pradesh: [20.9507, 85.2386],
+    Odisha: [22.3511, 82.6746],
+    // Singrauli: [24.1974, 82.6753],
+    // Chandrapur: [19.9595, 79.2961],
+    // Neyveli: [11.5394, 79.4704],
+    // Ramagundam: [18.8005, 79.4528],
   };
 
   const heatData: [number, number, number][] = [
-    [51.505, -0.09, 0.5],
+    [23.6166, -0.09, 0.5],
     [51.51, -0.1, 0.7],
     [51.49, -0.08, 0.9],
-    [51.505, -0.09, 0.5],
+    [23.6166, -0.09, 0.5],
     [51.51, -0.1, 0.7],
     [51.49, -0.08, 0.9],
-    [51.505, -0.09, 0.5],
+    [23.6166, -0.09, 0.5],
     [51.51, -0.1, 0.7],
     [51.49, -0.08, 1.9],
   ];
@@ -136,7 +140,7 @@ const Carbonsink: React.FC = () => {
           {/* Map Display */}
           <div className="flex-1 bg-gray-200 dark:bg-gray-800 h-96 rounded-lg shadow-md flex items-center justify-center relative">
             {/* <MapComponent position={coordinates} /> */}
-            <Heatmap heatData={heatData} />
+            <Heatmap heatData={heatData} location={coordinates} />
           </div>
         </div>
         {/* Metrics Section */}

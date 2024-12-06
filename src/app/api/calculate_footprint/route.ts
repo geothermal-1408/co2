@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       exclusion_factor,
       coal_conversion_factor,
       co2_emissions_factor,
-    } = body;
+    }: footprint_input = body;
 
     const { messages, flag, emissions } = analyzeEmission(
       coal_type.toLowerCase(),
