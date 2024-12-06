@@ -44,11 +44,6 @@ export default function DonationForm() {
         <CardTitle className="text-3xl text-green-700 text-center">
           Make Your Green Impact
         </CardTitle>
-        {!showQRCode && (
-          <CardDescription>
-            Choose your contribution (minimum ₹20)
-          </CardDescription>
-        )}
       </CardHeader>
       <CardContent>
         {!showQRCode && (
@@ -72,6 +67,7 @@ export default function DonationForm() {
                 />
                 <span className="text-3xl font-bold text-green-700">₹</span>
               </div>
+              <p className="text-gray-600 text-sm">Choose your contribution (minimum ₹20)</p>
             </div>
 
             {/* Slider */}
