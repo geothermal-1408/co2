@@ -19,7 +19,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { footprint_input } from "@/lib/types";
-import analyzeEmission from "../../utils/footprint_algo";
+import evaluateCoalMine from "../../utils/footprint_algo";
 // import { NextApiRequest, NextApiResponse } from "next";
 
 export async function POST(req: NextRequest) {
@@ -33,7 +33,19 @@ export async function POST(req: NextRequest) {
       co2_emissions_factor,
     }: footprint_input = body;
 
-    const { messages, flag, emissions } = analyzeEmission(
+    if (
+      !coal_type ||
+      !production ||
+      !exclusion_factor ||
+      !coal_conversion_factor ||
+      !co2_emissions_factor
+    ) {
+      return NextResponse.json(
+        { error: "Please provide all required fields." },
+        { status: 400 }
+      );
+    }
+    const { flag, emissions, messages } = evaluateCoalMine(
       coal_type.toLowerCase(),
       production,
       exclusion_factor,
@@ -44,10 +56,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         emissions,
+        status: flag,
         messages,
-        status: flag
-          ? "Action recommended: Address identified issues to reduce CO2 emissions."
-          : "Sustainable: CO2 emissions are within desired levels.",
       },
       { status: 200 }
     );
