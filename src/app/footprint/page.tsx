@@ -26,31 +26,11 @@ export function CarbonFootprintAnalysis() {
     setTheme(darkMode ? "light" : "dark");
   };
   const divStyle = {
-    backgroundImage:
-      "url(https://normecverifavia.com/media/2024/03/8.4-CO2-graph-with-green-background.jpg)", // Path to your image
+    backgroundImage: "public/Footprint.jpg", // Path to your image
     backgroundSize: "cover", // Ensures the image covers the entire div
     backgroundPosition: "center", // Center the background image
-    height: "100vh", // Set the height of the div (full viewport height)
+    height: "200vh", // Set the height of the div (full viewport height)
   };
-  const animationStyle = {
-    background: "linear-gradient(45deg, #ff6b6b, #f0f8ff)",
-    backgroundSize: "400% 400%",
-    animation: "gradientAnimation 10s ease infinite",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
-  const calculateCO2Emissions = (
-    production: number,
-    exclusion: number,
-    conversion: number,
-    emission: number
-  ): number => {
-    return (production * (1 - exclusion) * conversion * emission) / 10 ** 6;
-  };
-
   const handleCalculate = async () => {
     const productionValue = parseFloat(production);
     const conversionValue = parseFloat(conversion);
@@ -71,78 +51,27 @@ export function CarbonFootprintAnalysis() {
     setMessages([]); // Clear messages before new calculation
 
     try {
-      const emissions = calculateCO2Emissions(
-        productionValue,
-        exclusionValue,
-        conversionValue,
-        emissionValue
-      );
-      setFootprint(emissions);
-      setShowResult(true);
-
-      const newMessages: string[] = [];
-
-      // Conditional logic based on inputs, similar to your Python code
-      if (productionValue > 15000000) {
-        newMessages.push(
-          "The production is too high. It must be reduced in order to restore the ecosystem and reduce the carbon footprint."
-        );
-      }
-
-      if (exclusionValue > 0.025) {
-        newMessages.push(
-          "The exclusion factor, which estimates the fraction of extracted coal that is not ultimately combusted (i.e. lost along the supply chain or used for non-combustion purposes) in a given year  is too high. The desired value is around 0.017 for efficient operations."
-        );
-      }
-
-      // Coal type and other conditions
-      if (coalType === "bituminous") {
-        if (conversionValue < 25 || conversionValue > 30) {
-          newMessages.push(
-            "Coal type conversion factor, which is a measure of the energy contents per physical unit of coal subtype, or net calorific value, is higher than desired levels. \n The following steps could be taken : \n - Using coal gasification \n - Use degasification wells and drainage borewells."
-          );
-        }
-        if (emissionValue > 98000) {
-          newMessages.push(
-            "The CO2 emissions factor for bituminous coal is above desired levels. Consider prioritizing mining coal seams with lower intensity."
-          );
-        }
-      } else if (coalType === "anthracite") {
-        if (conversionValue < 25 || conversionValue > 30) {
-          newMessages.push(
-            "Coal type conversion factor, which is a measure of the energy contents per physical unit of coal subtype, or net calorific value, is higher than desired levels. \n The following steps could be taken : \n - Using coal gasification \n - Use degasification wells and drainage borewells."
-          );
-        }
-        if (emissionValue > 95000) {
-          newMessages.push(
-            "The CO2 emissions factor for anthracite coal is above desired levels. Consider optimizing mining and combustion processes."
-          );
-        }
-      } else if (coalType === "lignite") {
-        if (conversionValue < 10 || conversionValue > 15) {
-          newMessages.push(
-            "Coal type conversion factor, which is a measure of the energy contents per physical unit of coal subtype, or net calorific value, is higher than desired levels. \n The following steps could be taken : \n - Using coal gasification \n - Use degasification wells and drainage borewells."
-          );
-        }
-        if (emissionValue > 100000) {
-          newMessages.push(
-            "The CO2 emissions factor for lignite coal is too high. Consider optimizing mining and combustion processes."
-          );
-        }
-      }
-
-      if (newMessages.length > 0) {
-        setMessages(newMessages);
-      } else {
-        setMessages([
-          "The CO2 emissions are within the required sustainable levels.",
-        ]);
-      }
+      const res = await fetch("/api/calculate_footprint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          coal_type: coalType,
+          production: productionValue,
+          exclusion_factor: exclusionValue,
+          coal_conversion_factor: conversionValue,
+          co2_emissions_factor: emissionValue,
+        }),
+      });
+      const data = await res.json();
+      setMessages(data.messages);
+      setFootprint(data.emissions);
     } catch (error) {
-      console.error("Failed to fetch data", error);
-      alert("An error occurred while calculating the carbon footprint.");
+      return alert("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
+      setShowResult(true);
     }
   };
 
@@ -159,13 +88,10 @@ export function CarbonFootprintAnalysis() {
 
   return (
     <div className="min-h-screen w-full overflow-y-auto flex flex-col bg-white text-gray-900 dark:bg-gray-900">
-      {/* Header Section */}
-      {/* Header Section */}
       <header
         className="flex justify-between items-center mb-8 mt-8 px-4 py-6"
         style={{
-          backgroundColor: darkMode ? "#f5f5f5" : "#e6f7ff", // Pale blue for light mode, light gray for dark mode
-          color: darkMode ? "#333333" : "#333333", // Dark text for both modes
+          color: darkMode ? "white" : "black", // Dark text for both modes
         }}
       >
         <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
@@ -304,15 +230,9 @@ export function CarbonFootprintAnalysis() {
             )}
           </div>
         </div>
-        <div className="mt-12 ml-5 mr-5 p-6 bg-gradient-to-r from-green-400 to-blue-500 dark:bg-gradient-to-r dark:from-green-700 dark:to-blue-800 rounded-xl shadow-lg space-y-6 transform transition-transform hover:scale-105 duration-300">
+        <div className="mt-12 ml-5 mr-5 p-6 bg-gradient-to-r from-green-400 to-blue-500 dark:bg-gradient-to-r dark:from-green-700 dark:to-blue-800 rounded-xl shadow-lg space-y-6">
           {/* Section for Image */}
-          <div className="relative w-full h-56 rounded-lg overflow-hidden mb-6 shadow-xl transform transition-transform hover:scale-110 duration-300">
-            <img
-              src="your-image-url-here.jpg"
-              alt="Carbon Footprint"
-              className="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity duration-300"
-            />
-          </div>
+          <div className="relative w-full h-56 rounded-lg overflow-hidden mb-6 shadow-xl"></div>
 
           {/* Main Content */}
           <h3 className="text-3xl font-extrabold text-white text-center dark:text-gray-100 mb-4">
