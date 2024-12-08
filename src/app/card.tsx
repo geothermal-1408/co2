@@ -31,8 +31,9 @@ export const CarbonFootprintCard = () => {
           </CardHeader>
           <CardContent>
             <p>
-              Coal mines in India contribute significantly to the country's
-              carbon footprint, releasing methane, a potent greenhouse gas.
+              Carbon footprint measures the total greenhouse gas emissions,
+              primarily carbon dioxide, produced by human activities like
+              transportation and manufacturing.
             </p>
           </CardContent>
         </Card>
@@ -238,7 +239,8 @@ export const MitigationStrategiesCard = () => {
           <CardContent>
             <p>
               Strategies include methane capture, energy-efficient equipment,
-              optimized transportation,land reclamation,and Switching to renewable energy sources.
+              optimized transportation,land reclamation,and Switching to
+              renewable energy sources.
             </p>
           </CardContent>
         </Card>
