@@ -117,7 +117,7 @@ export default function SignUp() {
       imageRendering: "crisp-edges", // Ensures a sharp image
     }}
   >
-      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-80">
+      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg bg-white bg-opacity-50 backdrop-blur-lg dark:bg-black dark:bg-opacity-50 dark:backdrop-blur-lg">
         <h2 className="font-bold text-xl text-center text-neutral-800 dark:text-neutral-200">
           Welcome to CarbonTrack India
         </h2>
@@ -217,34 +217,24 @@ export default function SignUp() {
 
         <div className="flex flex-col space-y-4">
           <button
-            className=" relative group/btn hover:scale-105 transition-transform flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+            className="relative group/btn hover:scale-105 transition-transform flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
             onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
           >
             <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+            <span className="text-neutral-700 dark:text-neutral-300 text-base">
               GitHub
             </span>
             <BottomGradient />
           </button>
           <button
-            className=" relative group/btn hover:scale-105 transition-transform flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+            className=" relative group/btn hover:scale-105 transition-transform flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+            <span className="text-neutral-700 dark:text-neutral-300 text-base">
               Google
-            </span>
-            <BottomGradient />
-          </button>
-          <button
-            className=" relative group/btn hover:scale-105 transition-transform flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
-          >
-            <IconBrandFacebook className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              Facebook
             </span>
             <BottomGradient />
           </button>
