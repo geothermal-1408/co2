@@ -23,7 +23,11 @@ export function CarbonFootprintAnalysis() {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    setTheme(darkMode ? "light" : "dark");
+    if (darkMode) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
   };
   const divStyle = {
     backgroundImage: "public/Footprint.jpg", // Path to your image
@@ -87,12 +91,9 @@ export function CarbonFootprintAnalysis() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-y-auto flex flex-col bg-white text-gray-900 dark:bg-gray-900">
+    <div className="min-h-screen  overflow-y-auto flex flex-col">
       <header
-        className="flex justify-between items-center mb-8 mt-8 px-4 py-6"
-        style={{
-          color: darkMode ? "white" : "black", // Dark text for both modes
-        }}
+        className="flex justify-between items-center mb-8 py-6"
       >
         <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
           Carbon Footprint 👣
@@ -100,11 +101,7 @@ export function CarbonFootprintAnalysis() {
         <button
           onClick={toggleDarkMode}
           aria-label="Toggle Dark Mode"
-          className="p-2 rounded-full border border-gray-300 hover:bg-gray-200 transition-colors"
-          style={{
-            backgroundColor: darkMode ? "#2d2d2d" : "#e0e0e0", // Light gray background for light mode toggle button, dark background for dark mode
-            color: darkMode ? "#ffffff" : "#333333", // Dark text for dark mode toggle button, light text for light mode
-          }}
+          className="p-2 mr-8 rounded-full border border-black dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           {darkMode ? (
             <Sun className="w-6 h-6 text-yellow-400" />
