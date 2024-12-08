@@ -21,35 +21,35 @@ export function Footprintlayout() {
       label: "Dashboard",
       href: "/dashboard",
       icon: (
-        <IconDashboard className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+        <IconDashboard className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
     {
       label: "Carbon Footprint",
       href: "/footprint",
       icon: (
-        <IconLeaf className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+        <IconLeaf className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
     {
       label: "Sink Analysis",
       href: "/carbonsink",
       icon: (
-        <IconGraph className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+        <IconGraph className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
     {
       label: "Neutrality",
       href: "/neutrality",
       icon: (
-        <IconScale className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+        <IconScale className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
     {
       label: "Report",
       href: "/report",
       icon: (
-        <IconFileReport className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0" />
+        <IconFileReport className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
   ];
