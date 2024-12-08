@@ -77,7 +77,7 @@ export const Dashboard = () => {
             <button
               onClick={toggleDarkMode}
               aria-label="Toggle Dark Mode"
-              className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-full border border-black dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
               {darkMode ? (
                 <Sun className="w-6 h-6 text-yellow-400" />
@@ -89,7 +89,7 @@ export const Dashboard = () => {
           {/* Responsive Grid for Dashboard Cards */}
           <div className="dashboard-cards grid grid-cols-2 gap-6">
             {/* Card 1: Total Emissions (left side) */}
-            <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
+            <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
                 <h2 className="text-2xl mb-4 text-black font-bold"><span role="img" aria-label="graph">📊</span>Carbon Emissions</h2>
@@ -114,11 +114,11 @@ export const Dashboard = () => {
               </div>
             </div>
             {/* Table Card (Right side) */}
-            <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center justify-center hover:scale-105 transition-transform">
+            <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col items-center justify-center hover:scale-105 transition-transform">
               <div className="table-container w-full flex justify-center items-center h-full">
                 <div className="w-full max-w-md">
                   {/* Table Heading */}
-                  <h3 className="text-2xl font-semibold mb-4 text-center text-black dark:text-white">
+                  <h3 className="text-2xl font-semibold mb-4 text-center text-black dark:text-black">
                     <span role="img" aria-label="table">📋</span> Emission Rates
                   </h3>
                   {/* Table */}
@@ -154,7 +154,7 @@ export const Dashboard = () => {
               </div>
             </div>
             {/* Card 2: Energy Consumption */}
-            <div className="card col-span-1 row-span-1 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
+            <div className="card col-span-1 row-span-1 p-6 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
                 <h4 className="text-2xl mb-4 text-black font-bold">
@@ -186,7 +186,7 @@ export const Dashboard = () => {
               </div>
             </div>
             {/* Card 3: Carbon Intensity */}
-            <div className="card col-span-1 row-span-1 p-6 bg-green-100 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
+            <div className="card col-span-1 row-span-1 p-6 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
                 <h2 className="text-2xl mb-4 text-black font-bold">
