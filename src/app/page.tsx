@@ -72,19 +72,19 @@ export default function Component() {
           <ModeToggle />
           <button
             onClick={openAboutModal}
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
           >
             About
           </button>
           <Link
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
             href="/donation"
           >
             Donate
           </Link>
           <button
             onClick={openContactModal}
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
           >
             Contact
           </button>
@@ -102,7 +102,7 @@ export default function Component() {
       <main className="flex-grow px-6 py-8 bg-white dark:bg-gray-800">
         {/* Hero Section */}
         <section
-          className="relative bg-cover bg-center py-24 text-black-800 dark:text-white"
+          className="relative bg-cover bg-center py-24 text-black-800 dark:text-white mb-7"
           style={{
             backgroundImage:
               "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
