@@ -55,7 +55,7 @@ export function Footprintlayout() {
   ];
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
+    <div className="rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-gray-900 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
