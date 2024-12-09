@@ -62,7 +62,7 @@ const Carbonsink: React.FC = () => {
   return (
     <div className="w-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col">
       {/* Container */}
-      <div className="container mx-auto flex flex-col gap-6">
+      <div className="container mx-auto flex flex-col gap-6 p-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
@@ -71,7 +71,7 @@ const Carbonsink: React.FC = () => {
           <button
             onClick={toggleDarkMode}
             aria-label="Toggle Dark Mode"
-            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-full border border-black dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           >
             {darkMode ? (
               <Sun className="w-6 h-6 text-yellow-400" />
@@ -85,7 +85,7 @@ const Carbonsink: React.FC = () => {
         {/* Main Section */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Map Section */}
-          <div className="flex-1 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md flex items-center justify-center h-[600px]">
+          <div className="flex-1 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex items-center justify-center h-[600px]">
             <div className="w-[80%] h-[90%] flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden">
               {/* Heatmap Component */}
               <Heatmap 
@@ -97,17 +97,17 @@ const Carbonsink: React.FC = () => {
 
 
           {/* Input Fields and Key Metrics */}
-          <div className="flex-1 flex flex-col justify-between bg-gray-200 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="flex-1 flex flex-col justify-between bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md">
             {/* Input Fields */}
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">Select a State</h2>
+              <h2 className="text-2xl font-semibold">Select a District</h2>
               <select
                 value={selectedState}
                 onChange={handleStateChange}
-                className="w-full p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-white"
               >
                 <option value="" disabled>
-                  -- Select a State --
+                  -- Select a District --
                 </option>
                 {Object.keys(states).map((state, index) => (
                   <option key={index} value={state}>
@@ -126,7 +126,7 @@ const Carbonsink: React.FC = () => {
               <select
                 value={selectedState}
                 onChange={handleStateChange}
-                className="w-full p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full p-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               >
                 <option value="" disabled>
                   -- Select a Coal Mine --
@@ -165,7 +165,7 @@ const Carbonsink: React.FC = () => {
                 ].map((metric, index) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md text-center"
+                    className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center"
                   >
                     <h2 className="text-lg font-semibold">{metric.title}</h2>
                     <p className="text-md text-gray-700 dark:text-gray-400 mt-2">
@@ -183,7 +183,7 @@ const Carbonsink: React.FC = () => {
           <h2 className="text-2xl font-semibold text-center">
             Carbon Sequestration Trends
           </h2>
-          <div className="bg-white dark:bg-gray-800 h-64 rounded-lg shadow-md flex items-center justify-center relative">
+          <div className="bg-green-200 dark:bg-slate-700 h-64 rounded-lg shadow-md flex items-center justify-center relative">
             <div className="absolute inset-0 flex items-center justify-center">
               <LineChart className="w-16 h-16 text-gray-300" />
             </div>
