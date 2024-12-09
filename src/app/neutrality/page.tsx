@@ -28,7 +28,7 @@ export default function Neutrality() {
         <button
           onClick={toggleDarkMode}
           aria-label="Toggle Dark Mode"
-          className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-full border border-black dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           {darkMode ? (
             <Sun className="w-6 h-6 text-yellow-400" />
@@ -46,7 +46,7 @@ export default function Neutrality() {
         ].map((item, index) => (
           <div
             key={index}
-            className="group relative bg-gray-100 dark:bg-gray-800 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom  transition"
+            className="group relative bg-green-200 dark:bg-slate-700 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom  transition"
           >
             {item.icon}
             <div className="absolute bottom-4 left-4 group-hover:opacity-100 opacity-0 transition-opacity">
@@ -98,12 +98,12 @@ export default function Neutrality() {
           ].map((pathway, index) => (
             <div
               key={index}
-              className="relative bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl dark:hover:shadow-dark-custom transition group"
+              className="relative bg-blue-200 dark:bg-slate-700 p-6 rounded-lg shadow hover:shadow-xl dark:hover:shadow-dark-custom transition group"
             >
               <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-500 transition-colors">
                 {pathway.title}
               </h3>
-              <p className="mb-4 text-sm text-gray-700 dark:text-gray-300">
+              <p className="mb-4 text-sm text-gray-800 dark:text-gray-200">
                 {pathway.description}
               </p>
               <a
