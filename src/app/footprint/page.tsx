@@ -91,7 +91,7 @@ export function CarbonFootprintAnalysis() {
   };
 
   return (
-    <div className="min-h-screen  overflow-y-auto flex flex-col">
+    <div className="min-h-screen w-full overflow-y-auto flex flex-col">
       <header
         className="flex justify-between items-center mb-8 py-6"
       >
@@ -116,8 +116,7 @@ export function CarbonFootprintAnalysis() {
         <div className="container mx-auto py-10 px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Inputs in a single card */}
           <div
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md space-y-4"
-            style={{ opacity: 0.8 }}
+            className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md space-y-4"
           >
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
               Analyse Footprint
@@ -180,8 +179,7 @@ export function CarbonFootprintAnalysis() {
 
           {/* Right: Output */}
           <div
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
-            style={{ opacity: 0.8 }}
+            className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
           >
             {showResult ? (
               <div className="text-center">
@@ -200,14 +198,14 @@ export function CarbonFootprintAnalysis() {
                 {/* Display Messages */}
                 {messages.length > 0 && (
                   <div className="mt-4 text-left space-y-2">
-                    <h4 className="font-semibold text-gray-700 dark:text-gray-300">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
                       Suggested Actions:
                     </h4>
                     <ul className="list-disc pl-5">
                       {messages.map((message, index) => (
                         <li
                           key={index}
-                          className="text-gray-600 dark:text-gray-400"
+                          className="text-gray-800 dark:text-gray-300"
                         >
                           {message}
                         </li>
