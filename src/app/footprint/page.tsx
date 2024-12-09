@@ -30,10 +30,13 @@ export function CarbonFootprintAnalysis() {
     }
   };
   const divStyle = {
-    backgroundImage: "public/Footprint.jpg", // Path to your image
-    backgroundSize: "cover", // Ensures the image covers the entire div
-    backgroundPosition: "center", // Center the background image
-    height: "200vh", // Set the height of the div (full viewport height)
+    backgroundImage: "url('https://normecverifavia.com/media/2024/03/8.4-CO2-graph-with-green-background.jpg')", 
+    backgroundSize: "cover",  // Ensure the image covers the div without stretching
+    backgroundPosition: "center", // Center the image
+    backgroundRepeat: "no-repeat", // Prevent tiling
+    backgroundAttachment: "fixed", // Make the background stay fixed when scrolling
+    height: "100vh",  // Adjust height as per your design
+    width: "100%", // Ensure full width
   };
   const handleCalculate = async () => {
     const productionValue = parseFloat(production);
