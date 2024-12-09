@@ -32,7 +32,7 @@ export const CarbonFootprintCard = () => {
           <CardContent>
             <p>
               Carbon footprint measures the total greenhouse gas emissions,
-              primarily carbon dioxide, produced by human activities like
+              primarily CO2, produced by human activities like
               transportation and manufacturing.
             </p>
           </CardContent>
