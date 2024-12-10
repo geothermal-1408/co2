@@ -92,10 +92,21 @@ export const Dashboard = () => {
             <div className="card col-span-2 lg:col-span-1 row-span-1 p-6 bg-green-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col lg:flex-row items-center lg:items-start hover:scale-105 transition-transform">
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
-                <h2 className="text-2xl mb-4 text-black font-bold"><span role="img" aria-label="graph">📊</span>Carbon Emissions</h2>
-                <p className="text-lg mb-4 text-black dark:text-white">Understanding total emissions is critical for tracking environmental impact.The total emissions of world equal to almost :</p>
-      
-                <p className="text-xl mb-6 ml-12">Total Emissions:  12,345 tCO2e</p>
+                <h2 className="text-2xl mb-4 text-black font-bold">
+                  <span role="img" aria-label="graph">
+                    📊
+                  </span>
+                  Carbon Emissions
+                </h2>
+                <p className="text-lg mb-4 text-black dark:text-white">
+                  Understanding total emissions is critical for tracking
+                  environmental impact.The total emissions of world equal to
+                  almost :
+                </p>
+
+                <p className="text-xl mb-6 ml-12">
+                  Total Emissions: 12,345 tCO2e
+                </p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
@@ -119,34 +130,61 @@ export const Dashboard = () => {
                 <div className="w-full max-w-md">
                   {/* Table Heading */}
                   <h3 className="text-2xl font-semibold mb-4 text-center text-black dark:text-black">
-                    <span role="img" aria-label="table">📋</span> Emission Rates
+                    <span role="img" aria-label="table">
+                      📋
+                    </span>{" "}
+                    Emission Rates
                   </h3>
                   {/* Table */}
                   <table className="table-auto w-full max-w-full border-collapse mx-auto font-lucida">
                     {/* Table Header */}
                     <thead className="bg-black text-white dark:bg-gray-800">
                       <tr className="text-lg">
-                        <th className="px-6 py-2 border border-gray-200">Country</th>
-                        <th className="px-6 py-2 border border-gray-200">Coal Mine</th>
-                        <th className="px-6 py-2 border border-gray-200">Emissions</th>
+                        <th className="px-6 py-2 border border-gray-200">
+                          Country
+                        </th>
+                        <th className="px-6 py-2 border border-gray-200">
+                          Coal Mine
+                        </th>
+                        <th className="px-6 py-2 border border-gray-200">
+                          Emissions
+                        </th>
                       </tr>
                     </thead>
                     {/* Table Body */}
                     <tbody>
                       <tr className="bg-gray-100 dark:bg-gray-600">
-                        <td className="px-4 py-2 border border-gray-200 text-black">India</td>
-                        <td className="px-4 py-2 border border-gray-200 text-black">Neyveli I</td>
-                        <td className="px-4 py-2 border border-gray-200 text-black">1.90 TonsCO2/year</td>
+                        <td className="px-4 py-2 border border-gray-200 text-black">
+                          India
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-black">
+                          Neyveli I
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-black">
+                          1.90 TonsCO2/year
+                        </td>
                       </tr>
                       <tr className="bg-gray-200 dark:bg-gray-700">
-                        <td className="px-4 py-2 border border-gray-200 text-red-600">USA</td>
-                        <td className="px-4 py-2 border border-gray-200 text-red-600">D-21 coalmine</td>
-                        <td className="px-4 py-2 border border-gray-200 text-red-600">2.62 TonsCO2/year</td>
+                        <td className="px-4 py-2 border border-gray-200 text-red-600">
+                          USA
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-red-600">
+                          D-21 coalmine
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-red-600">
+                          2.62 TonsCO2/year
+                        </td>
                       </tr>
                       <tr className="bg-gray-100 dark:bg-gray-600">
-                        <td className="px-4 py-2 border border-gray-200 text-green-600">Russia</td>
-                        <td className="px-4 py-2 border border-gray-200 text-green-600">Razrez Raspadsky</td>
-                        <td className="px-4 py-2 border border-gray-200 text-green-600">2.98 TonsCO2/year</td>
+                        <td className="px-4 py-2 border border-gray-200 text-green-600">
+                          Russia
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-green-600">
+                          Razrez Raspadsky
+                        </td>
+                        <td className="px-4 py-2 border border-gray-200 text-green-600">
+                          2.98 TonsCO2/year
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -158,11 +196,20 @@ export const Dashboard = () => {
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
                 <h4 className="text-2xl mb-4 text-black font-bold">
-                  <span role="img" aria-label="energy">⚡</span> Energy Consumption
+                  <span role="img" aria-label="energy">
+                    ⚡
+                  </span>{" "}
+                  Energy Consumption
                 </h4>
-                <p className="text-lg mb-4 text-black dark:text-white">Energy consumption is a key factor in determining the environmental impact of an organization.The average global consumption equals : </p>
+                <p className="text-lg mb-4 text-black dark:text-white">
+                  Energy consumption is a key factor in determining the
+                  environmental impact of an organization.The average global
+                  consumption equals :{" "}
+                </p>
 
-                <p className="text-xl mb-6 ml-4">Toatl Consumption:  45,678 MWh</p>
+                <p className="text-xl mb-6 ml-4">
+                  Toatl Consumption: 45,678 MWh
+                </p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
@@ -190,10 +237,18 @@ export const Dashboard = () => {
               {/* Text Section */}
               <div className="text-section w-full lg:w-1/2 flex flex-col justify-center text-left h-full">
                 <h2 className="text-2xl mb-4 text-black font-bold">
-                  <span role="img" aria-label="carbon">🌍</span> Carbon Intensity
+                  <span role="img" aria-label="carbon">
+                    🌍
+                  </span>{" "}
+                  Carbon Intensity
                 </h2>
-                <p className="text-lg mb-4 text-black dark:text-white">Carbon intensity refers to the amount of carbon emissions per unit of energy produced.The global average is close to :</p>
-                <p className="text-xl mb-6 ml-4">Total Intensity:  0.85 tCO2e/t</p>
+                <p className="text-lg mb-4 text-black dark:text-white">
+                  Carbon intensity refers to the amount of carbon emissions per
+                  unit of energy produced.The global average is close to :
+                </p>
+                <p className="text-xl mb-6 ml-4">
+                  Total Intensity: 0.85 tCO2e/t
+                </p>
               </div>
               {/* Chart Section */}
               <div className="chart-section w-full lg:w-1/2 flex justify-center">
@@ -227,46 +282,48 @@ export const Dashboard = () => {
           <div className="strategy-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Strategy Card 1 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-            <h3 className="text-xl mb-4 text-black font-bold">
-            Carbon Footprint
-            </h3>
-            <ul className="list-disc pl-5 space-y-2">
-            <li>
-              Quantifies our environmental impact.
-            </li>
-              <li>
-                It quantifies the environmental impact of our activities and helps identify areas where emissions can be reduced.
-              </li>
-            </ul>
+              <h3 className="text-xl mb-4 text-black font-bold">
+                Carbon Footprint
+              </h3>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Quantifies our environmental impact.</li>
+                <li>
+                  It quantifies the environmental impact of our activities and
+                  helps identify areas where emissions can be reduced.
+                </li>
+              </ul>
             </div>
             {/* Strategy Card 2 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-            <h3 className="text-xl mb-4 text-black font-bold">
-            Carbon Sink
-            </h3>
-            <ul className="list-disc pl-5 space-y-2">
-            <li>
-              Natural systems like forests and oceans absorb more carbon than they emit, acting as carbon sinks.
-            </li>
-            <li>
-              Protecting and restoring these sinks is crucial for mitigating climate change and maintaining ecological balance.
-            </li>
-            </ul>
+              <h3 className="text-xl mb-4 text-black font-bold">Carbon Sink</h3>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  Natural systems like forests and oceans absorb more carbon
+                  than they emit, acting as carbon sinks.
+                </li>
+                <li>
+                  Protecting and restoring these sinks is crucial for mitigating
+                  climate change and maintaining ecological balance.
+                </li>
+              </ul>
             </div>
             {/* Strategy Card 3 */}
             <div className="card p-6 bg-blue-200 dark:bg-slate-700 rounded-lg shadow-md flex flex-col hover:scale-105 transition-transform">
-            <h3 className="text-xl mb-4 text-black font-bold">
-            Carbon Neutrality
-            </h3>
-            <ul className="list-disc pl-5 space-y-2">
-            <li>
-            Achieving carbon neutrality means balancing carbon emissions with carbon removal, leading to a net-zero impact on the environment.
-            </li>
-              <li>
-              This is essential for stabilizing the climate and preserving our planet for future generations.
-            </li>
-            </ul>
-          </div>
+              <h3 className="text-xl mb-4 text-black font-bold">
+                Carbon Neutrality
+              </h3>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  Achieving carbon neutrality means balancing carbon emissions
+                  with carbon removal, leading to a net-zero impact on the
+                  environment.
+                </li>
+                <li>
+                  This is essential for stabilizing the climate and preserving
+                  our planet for future generations.
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </main>
