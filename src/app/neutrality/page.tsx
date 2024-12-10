@@ -64,6 +64,7 @@ export default function Neutrality() {
     }
   };
 
+
   return (
     <div className="mx-auto p-6 space-y-12">
       {/* Header */}
@@ -83,18 +84,18 @@ export default function Neutrality() {
           )}
         </button>
       </header>
+
+      {/* Upper Section: Location and Emissions */}
       <div
         className="bg-cover bg-center"
-        style={
-          {
-            // backgroundImage:
-            //   'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
-          }
-        }
+        style={{
+          backgroundImage:
+            'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
+        }}
       >
         <section className="space-y-8 py-10">
           {/* Location Selection */}
-          <h2 className="text-xl font-semibold text-center text-white">
+          <h2 className="text-xl font-semibold text-center text-blue-950">
             Select Location
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-6">
@@ -137,6 +138,30 @@ export default function Neutrality() {
               )}
             </select>
           </div>
+
+          {/* Emissions Section */}
+          <h2 className="text-xl font-semibold text-center text-white">
+            Emissions
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
+            {[
+              { title: "Actual Emissions", icon: <BarChart2 /> },
+              { title: "Predicted Emissions", icon: <LineChart /> },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="group relative bg-green-200 dark:bg-slate-700 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom transition"
+              >
+                {item.icon}
+                <div className="absolute bottom-4 left-4 group-hover:opacity-100 opacity-0 transition-opacity">
+                  <p className="bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-md">
+                    {item.title}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
           {/* Analyze Now Button */}
           <div className="flex justify-center">
             <button className="relative group bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:animate-pulse transition">
@@ -145,25 +170,23 @@ export default function Neutrality() {
           </div>
         </section>
       </div>
+
       {/* Lower Section: Suggestions */}
       <div
         className="bg-cover bg-center"
-        style={
-          {
-            // backgroundImage:
-            //   'url("https://www.ga.gov.au/__data/assets/image/0006/109383/iStock-937183680.jpg")',
-          }
-        }
+        style={{
+          backgroundImage:
+            'url("https://www.ga.gov.au/__data/assets/image/0006/109383/iStock-937183680.jpg")',
+        }}
       >
         <section className="space-y-8 py-10">
           <h2 className="text-2xl font-bold text-center text-white">
             Do you want tips to save the environment? 🌱
           </h2>
           <div className="flex justify-center">
-            <button
-              className="relative group bg-purple-600 text-white py-4 px-8 rounded-full shadow-lg hover:bg-purple-800 transition"
-              onClick={generateAISuggestions}
-            >
+            <button className="relative group bg-purple-600 text-white py-4 px-8 rounded-full shadow-lg hover:bg-purple-800 transition"
+            onClick={generateAISuggestions}
+              >
               Generate Suggestions!
             </button>
           </div>
