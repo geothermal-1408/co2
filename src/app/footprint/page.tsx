@@ -30,12 +30,13 @@ export function CarbonFootprintAnalysis() {
     }
   };
   const divStyle = {
-    backgroundImage: "url('https://normecverifavia.com/media/2024/03/8.4-CO2-graph-with-green-background.jpg')", 
-    backgroundSize: "cover",  // Ensure the image covers the div without stretching
+    backgroundImage:
+      "url('https://normecverifavia.com/media/2024/03/8.4-CO2-graph-with-green-background.jpg')",
+    backgroundSize: "cover", // Ensure the image covers the div without stretching
     backgroundPosition: "center", // Center the image
     backgroundRepeat: "no-repeat", // Prevent tiling
     backgroundAttachment: "fixed", // Make the background stay fixed when scrolling
-    height: "100vh",  // Adjust height as per your design
+    height: "100vh", // Adjust height as per your design
     width: "100%", // Ensure full width
   };
   const handleCalculate = async () => {
@@ -94,10 +95,9 @@ export function CarbonFootprintAnalysis() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-y-auto flex flex-col">
-      <header
-        className="flex justify-between items-center mb-8 py-6"
-      >
+    <div
+      className="min-h-screen w-full overflow-y-auto flex flex-col">
+      <header className="flex justify-between items-center mb-8 py-6">
         <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
           Carbon Footprint 👣
         </h1>
@@ -114,13 +114,11 @@ export function CarbonFootprintAnalysis() {
         </button>
       </header>
 
-      <div style={divStyle}>
+      <div>
         {/* Inputs and Output Section */}
         <div className="container mx-auto py-10 px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Inputs in a single card */}
-          <div
-            className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md space-y-4"
-          >
+          <div className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md space-y-4">
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
               Analyse Footprint
             </h2>
@@ -181,9 +179,7 @@ export function CarbonFootprintAnalysis() {
           </div>
 
           {/* Right: Output */}
-          <div
-            className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md flex flex-col justify-center items-center"
-          >
+          <div className="bg-green-200 dark:bg-slate-700 p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
             {showResult ? (
               <div className="text-center">
                 <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">

@@ -83,8 +83,6 @@ export default function Neutrality() {
           )}
         </button>
       </header>
-
-      {/* Upper Section: Location and Emissions */}
       <div
         className="bg-cover bg-center"
         style={
@@ -139,30 +137,6 @@ export default function Neutrality() {
               )}
             </select>
           </div>
-
-          {/* Emissions Section */}
-          <h2 className="text-xl font-semibold text-center text-white">
-            Emissions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
-            {[
-              { title: "Actual Emissions", icon: <BarChart2 /> },
-              { title: "Predicted Emissions", icon: <LineChart /> },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="group relative bg-green-200 dark:bg-slate-700 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom transition"
-              >
-                {item.icon}
-                <div className="absolute bottom-4 left-4 group-hover:opacity-100 opacity-0 transition-opacity">
-                  <p className="bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-md">
-                    {item.title}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Analyze Now Button */}
           <div className="flex justify-center">
             <button className="relative group bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:animate-pulse transition">
@@ -171,7 +145,6 @@ export default function Neutrality() {
           </div>
         </section>
       </div>
-
       {/* Lower Section: Suggestions */}
       <div
         className="bg-cover bg-center"

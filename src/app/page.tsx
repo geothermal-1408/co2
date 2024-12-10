@@ -2,24 +2,33 @@
 
 import { Button1 } from "@/components/ui/moving-border";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, LineChart, PieChart } from "lucide-react";
-import Link from "next/link";
 import { ModeToggle } from "@/components/Toggle-mode";
-
-import * as React from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CoinsIcon as Coal, Factory, Leaf, TrendingUp, Wind, AlertTriangle, BarChart, PieChart } from 'lucide-react';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Bar, BarChart as RechartsBarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import About from "./about";
 import Contact from "./contact";
-import {
-  CarbonFootprintCard,
-  CarbonNeutralityCard,
-  MitigationStrategiesCard,
-} from "./card";
+import { CarbonFootprintCard, CarbonNeutralityCard, MitigationStrategiesCard } from "./card";
+import Link from "next/link";
 
+
+// Emission data for the chart
+const emissionData = [
+  { name: 'Mine A', emissions: 4000 },
+  { name: 'Mine B', emissions: 3000 },
+  { name: 'Mine C', emissions: 2000 },
+  { name: 'Mine D', emissions: 2780 },
+  { name: 'Mine E', emissions: 1890 },
+];
+
+// Main page component
 export default function Component() {
   const router = useRouter();
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
@@ -72,19 +81,19 @@ export default function Component() {
           <ModeToggle />
           <button
             onClick={openAboutModal}
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
           >
             About
           </button>
           <Link
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
             href="/donation"
           >
             Donate
           </Link>
           <button
             onClick={openContactModal}
-            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-blue-600 dark:hover:text-blue-600 hover:scale-105"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-green-600"
           >
             Contact
           </button>
@@ -102,10 +111,9 @@ export default function Component() {
       <main className="flex-grow px-6 py-8 bg-white dark:bg-gray-800">
         {/* Hero Section */}
         <section
-          className="relative bg-cover bg-center py-24 text-black-800 dark:text-white mb-7"
+          className="relative bg-cover bg-center py-24 text-black-800 dark:text-white"
           style={{
-            backgroundImage:
-              "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
+            backgroundImage: "url('https://s.yimg.com/uu/api/res/1.2/3mCYDQsUg05Enukn3Qxuvg--~B/aD0xNDE0O3c9MjExOTtzbT0xO2FwcGlkPXl0YWNoeW9u/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-06/33e53af0-8da2-11e9-93be-5782e244b0c4')",
             backgroundBlendMode: "overlay",
           }}
         >
@@ -117,66 +125,246 @@ export default function Component() {
             <div className="text-m text-black-800 dark:text-white flex flex-col items-center justify-center">
               <TypewriterEffectSmooth words={words} />
             </div>
-            <Button
-              size="lg"
-              className="mt-4 hover:scale-105 transition-transform"
-            >
+            <Button size="lg" className="mt-4 hover:scale-105 transition-transform">
               Learn More
             </Button>
           </div>
         </section>
+        <br /><br />
+        
 
-        {/* Info Cards Section */}
-        <section className="max-w-6xl mx-auto mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <CarbonFootprintCard />
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          The Growing Concern
+        </h2>
 
-            <CarbonNeutralityCard />
-
-            <MitigationStrategiesCard />
+        {/* Awareness Sections */}
+        <section className="mb-12 py-10 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <TrendingUp className="mr-2" />
+                  Rising Emissions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-gray-700 dark:text-gray-300">
+                  Coal mining activities contribute significantly to global carbon emissions, with a steady increase over the past decades.
+                </p>
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span>Carbon Emissions Growth</span>
+                    <span>75%</span>
+                  </div>
+                  <Progress value={75} className="w-full" />
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <AlertTriangle className="mr-2" />
+                  Environmental Impact
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-gray-700 dark:text-gray-300">
+                  The increasing carbon footprint of coal mines leads to various environmental issues, including climate change and air pollution.
+                </p>
+                <Alert>
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertTitle>Warning</AlertTitle>
+                  <AlertDescription>
+                    Continued increase in emissions may lead to irreversible environmental damage.
+                  </AlertDescription>
+                </Alert>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* Visualization Section */}
-        <section className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
-            Carbon Footprint Visualizations
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          Carbon Emission Rates in Coal Mines
+        </h2>
+
+        {/* Emission Data Section */}
+        <section className="mb-12 py-10 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <BarChart className="mr-2" />
+                  Emission Rates by Mine
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsBarChart data={emissionData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="emissions" fill="#8884d8" />
+                  </RechartsBarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <PieChart className="mr-2" />
+                  Emission Sources Distribution
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex justify-center items-center h-[300px]">
+                <Image
+                  src="/placeholder.svg?height=250&width=250"
+                  alt="Pie chart of emission sources"
+                  width={250}
+                  height={250}
+                />
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          Visual Impact of Coal Mining
+        </h2>
+
+        {/* Visual Impact Section */}
+        <section className="w-full mb-12 py-12 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
+          <div className="grid md:grid-cols-3 gap-12">
+            <Card>
+              <CardContent className="p-6">
+                <Image
+                  src="/placeholder.svg?height=250&width=350"
+                  alt="Coal mine landscape"
+                  width={350}
+                  height={250}
+                  className="rounded-lg"
+                />
+                <p className="mt-4 text-lg text-center text-gray-700 dark:text-gray-300">Open-pit coal mine</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <Image
+                  src="/placeholder.svg?height=250&width=350"
+                  alt="Coal power plant emissions"
+                  width={350}
+                  height={250}
+                  className="rounded-lg"
+                />
+                <p className="mt-4 text-lg text-center text-gray-700 dark:text-gray-300">Emissions from coal power plant</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <Image
+                  src="/placeholder.svg?height=250&width=350"
+                  alt="Reforestation efforts"
+                  width={350}
+                  height={250}
+                  className="rounded-lg"
+                />
+                <p className="mt-4 text-lg text-center text-gray-700 dark:text-gray-300">Reforestation efforts near mining sites</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          The Path to Carbon Neutrality
+        </h2>
+
+
+        {/* The Path to Carbon Neutrality Section */}
+        <section className="mb-12 py-12 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
+          <div className="grid md:grid-cols-3 gap-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center">
+                  <Leaf className="mr-2" />
+                  Sustainable Practices
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
+                  Implementing eco-friendly mining techniques and reforestation projects to offset carbon emissions.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center">
+                  <Wind className="mr-2" />
+                  Renewable Energy
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
+                  Transitioning to renewable energy sources for powering mining operations and related activities.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center">
+                  <Factory className="mr-2" />
+                  Efficient Technologies
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
+                  Adopting advanced technologies to improve energy efficiency and reduce overall carbon emissions.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+
+        {/* Call to Action Section */}
+        <section
+          className="flex flex-col justify-center items-center text-center min-h-[400px] md:min-h-[400px] py-12 bg-gray-200 dark:bg-gray-700 bg-cover bg-center bg-opacity-90 transition-colors duration-300 backdrop-blur-sm"
+          style={{
+            backgroundImage: `url('https://makeanapplike.com/wp-content/uploads/2022/03/app-to-track-carbon-footprint.jpg')`,
+            backgroundBlendMode: 'overlay',
+          }}
+        >
+          <h2 className="text-3xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
+            Sign In
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="hover:scale-105 transition-transform">
-              <CardContent className="flex justify-center">
-                <PieChart className="h-64 w-64 text-green-600 dark:text-green-400" />
-              </CardContent>
-              <div className="text-center font-semibold mt-4">
-                Emissions by Region
-              </div>
-            </Card>
-
-            <Card className="hover:scale-105 transition-transform">
-              <CardContent className="flex justify-center">
-                <LineChart className="h-64 w-full text-blue-600 dark:text-blue-400" />
-              </CardContent>
-              <div className="text-center font-semibold mt-4">
-                Annual Emissions Trend
-              </div>
-            </Card>
-
-            <Card className="hover:scale-105 transition-transform">
-              <CardContent className="flex justify-center">
-                <BarChart className="h-64 w-full text-purple-600 dark:text-purple-400" />
-              </CardContent>
-              <div className="text-center font-semibold mt-4">
-                Emission Sources
-              </div>
-            </Card>
-          </div>
+          <p className="mb-6 text-gray-700 dark:text-gray-300">
+            Want to quantify your carbon footprint?
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block"
+          >
+            <Button
+            size="lg"
+            className="bg-primary text-primary-foreground py-3 px-6 rounded-lg hover:bg-primary/90 transition-all"
+            onClick={handleGetStartedClick} 
+            >
+            Join
+            </Button>
+          </motion.div>
         </section>
-      </main>
 
-      {/* Footer */}
-      <footer className="px-6 py-4 bg-gray-800 text-white text-center">
-        <p>&copy; 2024 CarbonTrack India. All rights reserved.</p>
-      </footer>
+
+
+        
+        {/* Footer */}
+        <footer className="bg-secondary text-secondary-foreground py-6 mt-12">
+          <div className="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Carbon Track. All rights reserved.</p>
+          </div>
+        </footer>
+      </main>
 
       {/* About Modal */}
       {isAboutModalOpen && (

@@ -48,13 +48,13 @@ export function Dashboardlayout() {
         <IconScale className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
       ),
     },
-    {
-      label: "Report",
-      href: "/report",
-      icon: (
-        <IconFileReport className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
-      ),
-    },
+    // {
+    //   label: "Report",
+    //   href: "/report",
+    //   icon: (
+    //     <IconFileReport className="text-black dark:text-white h-7 w-7 flex-shrink-0" />
+    //   ),
+    // },
   ];
   const [open, setOpen] = useState(false);
 
