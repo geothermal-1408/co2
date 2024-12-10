@@ -357,7 +357,7 @@ export default function Component() {
 
 
 
-
+        
         {/* Footer */}
         <footer className="bg-secondary text-secondary-foreground py-6 mt-12">
           <div className="container mx-auto px-4 text-center">
