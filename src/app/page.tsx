@@ -132,13 +132,13 @@ export default function Component() {
         </section>
         <br /><br />
         
-        <h2 className="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100 transition-all duration-500 ease-in-out transform hover:scale-105">
-        The Growing Concern
-</h2>
+
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          The Growing Concern
+        </h2>
 
         {/* Awareness Sections */}
         <section className="mb-12 py-10 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
-
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
@@ -182,14 +182,13 @@ export default function Component() {
             </Card>
           </div>
         </section>
-        
-        <h2 className="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100 transition-all duration-500 ease-in-out transform hover:scale-105">
-        Carbon Emission Rates in Coal Mines
-</h2>
+
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-teal-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          Carbon Emission Rates in Coal Mines
+        </h2>
 
         {/* Emission Data Section */}
         <section className="mb-12 py-10 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
-
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
@@ -229,15 +228,14 @@ export default function Component() {
             </Card>
           </div>
         </section>
-        <h2 className="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100 transition-all duration-500 ease-in-out transform hover:scale-105">
-  Visual Impact of Coal Mining
-</h2>
 
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          Visual Impact of Coal Mining
+        </h2>
 
         {/* Visual Impact Section */}
         <section className="w-full mb-12 py-12 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
-
-          <div className=" grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-12">
             <Card>
               <CardContent className="p-6">
                 <Image
@@ -276,16 +274,14 @@ export default function Component() {
             </Card>
           </div>
         </section>
-        
-       
-        <h2 className="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100 transition-all duration-500 ease-in-out transform hover:scale-105">
-        The Path to Carbon Neutrality
-</h2>
+
+        <h2 className="text-4xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600 transition-all duration-500 ease-in-out transform hover:scale-105">
+          The Path to Carbon Neutrality
+        </h2>
 
 
         {/* The Path to Carbon Neutrality Section */}
         <section className="mb-12 py-12 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md transition-colors duration-300">
-
           <div className="grid md:grid-cols-3 gap-12">
             <Card>
               <CardHeader>
@@ -331,27 +327,37 @@ export default function Component() {
 
 
         {/* Call to Action Section */}
-        <section className="text-center py-12 bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
-        <h2 className="text-3xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-          Sign In
+        <section
+          className="flex flex-col justify-center items-center text-center min-h-[400px] md:min-h-[400px] py-12 bg-gray-200 dark:bg-gray-700 bg-cover bg-center bg-opacity-90 transition-colors duration-300 backdrop-blur-sm"
+          style={{
+            backgroundImage: `url('https://makeanapplike.com/wp-content/uploads/2022/03/app-to-track-carbon-footprint.jpg')`,
+            backgroundBlendMode: 'overlay',
+          }}
+        >
+          <h2 className="text-3xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
+            Sign In
           </h2>
           <p className="mb-6 text-gray-700 dark:text-gray-300">
             Want to quantify your carbon footprint?
-            </p>
-            <motion.div
+          </p>
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          className="inline-block"
+            className="inline-block"
           >
-    <Button
-      size="lg"
-      className="bg-primary text-primary-foreground py-3 px-6 rounded-lg hover:bg-primary/90 transition-all"
-      onClick={handleGetStartedClick} 
-    >
-      Join
-    </Button>
-  </motion.div>
-</section>
+            <Button
+            size="lg"
+            className="bg-primary text-primary-foreground py-3 px-6 rounded-lg hover:bg-primary/90 transition-all"
+            onClick={handleGetStartedClick} 
+            >
+            Join
+            </Button>
+          </motion.div>
+        </section>
+
+
+
+
         {/* Footer */}
         <footer className="bg-secondary text-secondary-foreground py-6 mt-12">
           <div className="container mx-auto px-4 text-center">
