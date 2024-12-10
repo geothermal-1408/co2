@@ -1,5 +1,3 @@
-// pages/index.js
-
 "use client";
 import { useState } from "react";
 import { ArrowRight, LineChart, BarChart2, Sun, Moon } from "lucide-react";
@@ -8,27 +6,75 @@ import { useTheme } from "next-themes";
 export default function Neutrality() {
   const [darkMode, setDarkMode] = useState(false);
   const { setTheme } = useTheme();
-  
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    if (darkMode) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
+    setTheme(darkMode ? "light" : "dark");
+  };
+
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedMine, setSelectedMine] = useState("");
+  const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
+
+  const cleanMessage = (raw: string): string[] => {
+    const lines = raw.split("\n").map((line) => line.trim());
+    console.log(lines);
+
+    // Find the index where the section starting with "1. Reducing Emissions at Source:" begins
+    const startIndex = lines.findIndex((line) => line.startsWith("**1."));
+
+    // If the starting point isn't found, return an empty array
+    if (startIndex === -1) {
+      return [];
+    }
+
+    // Extract lines starting from the found index to the end
+    const relevantLines = lines.slice(startIndex);
+
+    // Clean up the relevant lines and remove any numbered and bullet points
+    const pathways = relevantLines
+      .map(
+        (line) =>
+          line
+            .replace(/^\*\*\s*/, "") // Remove numbered list with **
+            .replace(/^\*\s*/, "") // Remove asterisk bullet points
+            .replace(/\*\*/g, "") // Remove any remaining bold formatting
+      )
+      .filter((line) => line); // Remove blank lines
+    return pathways;
+  };
+
+  const generateAISuggestions = async () => {
+    try {
+      // Call the AI API to generate more specific suggestions
+      const res = await fetch("api/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: `Generate carbon neutrality suggestions for ${selectedMine} in ${selectedCountry}`,
+        }),
+      });
+      const data = await res.json();
+      const cleanedData = cleanMessage(data);
+      setAiSuggestions(cleanedData);
+    } catch (error) {
+      console.error("Failed to generate suggestions", error);
     }
   };
 
   return (
     <div className="mx-auto p-6 space-y-12">
       {/* Header */}
-      <header className="flex justify-between items-center mb-8 ">
+      <header className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-extrabold text-center tracking-wide flex-1">
           Carbon Neutrality🌍
         </h1>
         <button
           onClick={toggleDarkMode}
           aria-label="Toggle Dark Mode"
-          className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-full border border-black dark:border-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           {darkMode ? (
             <Sun className="w-6 h-6 text-yellow-400" />
@@ -38,84 +84,130 @@ export default function Neutrality() {
         </button>
       </header>
 
-      {/* Emissions Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {[
-          { title: "Actual Emissions", icon: <BarChart2 /> },
-          { title: "Predicted Emissions", icon: <LineChart /> },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="group relative bg-gray-100 dark:bg-gray-800 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom  transition"
-          >
-            {item.icon}
-            <div className="absolute bottom-4 left-4 group-hover:opacity-100 opacity-0 transition-opacity">
-              <p className="bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-md">
-                {item.title}
-              </p>
-            </div>
+      {/* Upper Section: Location and Emissions */}
+      <div
+        className="bg-cover bg-center"
+        style={
+          {
+            // backgroundImage:
+            //   'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
+          }
+        }
+      >
+        <section className="space-y-8 py-10">
+          {/* Location Selection */}
+          <h2 className="text-xl font-semibold text-center text-white">
+            Select Location
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-6">
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white"
+            >
+              <option value="">Select Country</option>
+              <option value="India">India</option>
+              <option value="Australia">Australia</option>
+              <option value="USA">USA</option>
+            </select>
+            <select
+              value={selectedMine}
+              onChange={(e) => setSelectedMine(e.target.value)}
+              className="p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white"
+              disabled={!selectedCountry}
+            >
+              <option value="">Select Coal Mine</option>
+              {selectedCountry === "India" && (
+                <>
+                  <option value="Jharia">Jharia</option>
+                  <option value="Raniganj">Raniganj</option>
+                </>
+              )}
+              {selectedCountry === "Australia" && (
+                <>
+                  <option value="Hunter Valley">Hunter Valley</option>
+                  <option value="Bowen Basin">Bowen Basin</option>
+                </>
+              )}
+              {selectedCountry === "USA" && (
+                <>
+                  <option value="Powder River Basin">Powder River Basin</option>
+                  <option value="Appalachian Coalfields">
+                    Appalachian Coalfields
+                  </option>
+                </>
+              )}
+            </select>
           </div>
-        ))}
-      </section>
 
-      {/* Analyze Button */}
-      <div className="flex justify-center">
-        <button className="relative group bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:animate-pulse transition">
-          Analyze Now
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="flex justify-center items-center h-full"></div>
+          {/* Emissions Section */}
+          <h2 className="text-xl font-semibold text-center text-white">
+            Emissions
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
+            {[
+              { title: "Actual Emissions", icon: <BarChart2 /> },
+              { title: "Predicted Emissions", icon: <LineChart /> },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="group relative bg-green-200 dark:bg-slate-700 h-60 flex justify-center items-center rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-dark-custom transition"
+              >
+                {item.icon}
+                <div className="absolute bottom-4 left-4 group-hover:opacity-100 opacity-0 transition-opacity">
+                  <p className="bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-md">
+                    {item.title}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        </button>
+
+          {/* Analyze Now Button */}
+          <div className="flex justify-center">
+            <button className="relative group bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:animate-pulse transition">
+              Analyze Now
+            </button>
+          </div>
+        </section>
       </div>
 
-      {/* Pathways to Carbon Neutrality Section */}
-      <section>
-        <h2 className="text-2xl font-extrabold mb-6">
-          Pathways to Carbon Neutrality
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              title: "Renewable Energy",
-              description:
-                "Transition to renewable energy sources like solar, wind, and hydroelectric power to reduce your carbon footprint.",
-            },
-            {
-              title: "Energy Efficiency",
-              description:
-                "Implement energy-efficient practices and technologies to reduce your overall energy consumption.",
-            },
-            {
-              title: "Carbon Offsetting",
-              description:
-                "Invest in carbon offset projects to counterbalance your remaining carbon emissions.",
-            },
-            {
-              title: "Sustainable Practices",
-              description:
-                "Adopt sustainable practices in your daily operations to reduce your overall carbon footprint.",
-            },
-          ].map((pathway, index) => (
-            <div
-              key={index}
-              className="relative bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl dark:hover:shadow-dark-custom transition group"
+      {/* Lower Section: Suggestions */}
+      <div
+        className="bg-cover bg-center"
+        style={
+          {
+            // backgroundImage:
+            //   'url("https://www.ga.gov.au/__data/assets/image/0006/109383/iStock-937183680.jpg")',
+          }
+        }
+      >
+        <section className="space-y-8 py-10">
+          <h2 className="text-2xl font-bold text-center text-white">
+            Do you want tips to save the environment? 🌱
+          </h2>
+          <div className="flex justify-center">
+            <button
+              className="relative group bg-purple-600 text-white py-4 px-8 rounded-full shadow-lg hover:bg-purple-800 transition"
+              onClick={generateAISuggestions}
             >
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-500 transition-colors">
-                {pathway.title}
-              </h3>
-              <p className="mb-4 text-sm text-gray-700 dark:text-gray-300">
-                {pathway.description}
-              </p>
-              <a
-                href="#"
-                className="text-blue-500 dark:text-blue-400 font-semibold flex items-center hover:underline"
-              >
-                Learn More <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+              Generate Suggestions!
+            </button>
+          </div>
+          {aiSuggestions.length > 0 && (
+            <div className=" mt-2 space-y-4">
+              {aiSuggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
+                >
+                  <p>{suggestion}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          )}
+        </section>
+      </div>
     </div>
   );
 }
