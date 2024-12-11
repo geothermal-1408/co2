@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, LineChart, BarChart2, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export default function Neutrality() {
@@ -19,27 +19,22 @@ export default function Neutrality() {
   const cleanMessage = (raw: string): string[] => {
     const lines = raw.split("\n").map((line) => line.trim());
 
-    // Find the index where the section starting with "1. Reducing Emissions at Source:" begins
     const startIndex = lines.findIndex((line) => line.startsWith("**1."));
 
-    // If the starting point isn't found, return an empty array
     if (startIndex === -1) {
       return [];
     }
 
-    // Extract lines starting from the found index to the end
     const relevantLines = lines.slice(startIndex);
 
-    // Clean up the relevant lines and remove any numbered and bullet points
     const pathways = relevantLines
-      .map(
-        (line) =>
-          line
-            .replace(/^\*\*\s*/, "") // Remove numbered list with **
-            .replace(/^\*\s*/, "") // Remove asterisk bullet points
-            .replace(/\*\*/g, "") // Remove any remaining bold formatting
+      .map((line) =>
+        line
+          .replace(/^\*\*\s*/, "")
+          .replace(/^\*\s*/, "")
+          .replace(/\*\*/g, "")
       )
-      .filter((line) => line); // Remove blank lines
+      .filter((line) => line);
     return pathways;
   };
 
@@ -84,12 +79,10 @@ export default function Neutrality() {
       </header>
       <div
         className="bg-cover bg-center"
-        style={
-          {
-            // backgroundImage:
-            //   'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
-          }
-        }
+        style={{
+          backgroundImage:
+            'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
+        }}
       >
         <section className="space-y-8 py-10">
           {/* Location Selection */}

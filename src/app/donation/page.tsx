@@ -61,7 +61,7 @@ export default function DonatePage() {
               <Link href="/login" passHref>
                 <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-lg h-14">
                   <Tree className="mr-2 h-6 w-6" />
-                  Start Planting Now
+                  Quantify Emissions
                 </Button>
               </Link>
             </div>
