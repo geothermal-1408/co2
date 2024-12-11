@@ -18,7 +18,6 @@ export default function Neutrality() {
 
   const cleanMessage = (raw: string): string[] => {
     const lines = raw.split("\n").map((line) => line.trim());
-    console.log(lines);
 
     // Find the index where the section starting with "1. Reducing Emissions at Source:" begins
     const startIndex = lines.findIndex((line) => line.startsWith("**1."));
