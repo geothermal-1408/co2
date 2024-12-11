@@ -41,6 +41,9 @@ export default function Neutrality() {
   const generateAISuggestions = async () => {
     try {
       // Call the AI API to generate more specific suggestions
+      if (!selectedCountry || !selectedMine) {
+        alert("Please select a country and a mine to generate suggestions");
+      }
       const res = await fetch("api/predict", {
         method: "POST",
         headers: {
@@ -79,10 +82,10 @@ export default function Neutrality() {
       </header>
       <div
         className="bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
-        }}
+        // style={{
+        //   backgroundImage:
+        //     'url("https://www.awa.asn.au/hubfs/GettyImages-1417564706.jpg")',
+        // }}
       >
         <section className="space-y-8 py-10">
           {/* Location Selection */}
